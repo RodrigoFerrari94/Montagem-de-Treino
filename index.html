@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="estilos/estilo.css" />
+    <title>Vanderlei Ferrari</title>
+  </head>
+  <body>
+    <header>
+      <h1>ESTAMOS AQUI PARA AJUDAR VOCÊ A ALCANÇAR SEU POTENCIAL MÁXIMO.</h1>
+    </header>
+    <main>
+      <h2>Calcule sua força máxima agora!</h2>
+      <div class="form">
+        <input type="text" id="nome" placeholder="Digite seu Nome" /><br />
+
+        <input
+          type="number"
+          id="peso"
+          placeholder="Digite seu Peso Atual(KG)"
+        /><br />
+
+        <select id="nivel">
+          <option value="" disabled selected hidden>Escolha seu Nível</option>
+          <option value="iniciante">Iniciante</option>
+          <option value="experiente">Experiente</option>
+        </select>
+
+        <button onclick="salvarDados()">
+          <img src="estilos/imagens/flecha.webp" alt="Avançar" />
+        </button>
+      </div>
+      <div class="visualizarseção">
+        <input
+          type="button"
+          value="Visualizar Seção"
+          onclick="visualizarTreino()"
+        />
+        <select name="visualizarTreino" id="visualizarsecao">
+          <option value="a">Treino A</option>
+          <option value="b">Treino B</option>
+          <option value="c">Treino C</option>
+          <option value="d">Treino D</option>
+          <option value="e">Treino E</option>
+          <option value="f">Treino F</option>
+        </select>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Rodrigo Ferrari Personal trainer</p>
+    </footer>
+    <script src="visualizar-treino.js"></script>
+    <script>
+      function salvarDados() {
+        var nome = document.getElementById("nome").value;
+        var peso = document.getElementById("peso").value;
+        var nivel = document.getElementById("nivel").value;
+        var regex = /^\d+$/;
+
+        if (!regex.test(peso)) {
+          window.alert("[ERRO] Peso somente utilize números inteiros!!!");
+        } else if (nivel === "" || !nome.trim()) {
+          window.alert("[ERRO] Preencha os dados corretamente!!!");
+        } else {
+          localStorage.setItem("nomevd", nome);
+          localStorage.setItem("pesovd", peso);
+          localStorage.setItem("nivelvd", nivel);
+          window.location.href = "calculador.html";
+        }
+      }
+    </script>
+  </body>
+</html>

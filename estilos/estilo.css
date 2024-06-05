@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: black;
+  background-image: url(imagens/fundo-academia.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+h1 {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.758);
+  text-align: center;
+  font-size: 1.6em;
+  padding: 13px;
+  padding-top: 40px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+h2 {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.758);
+  text-align: center;
+  padding: 20px;
+  font-size: 1.7em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+input,
+button {
+  margin-top: 10px;
+
+  border-radius: 10px;
+  height: 30px;
+  width: 200px;
+  text-align: center;
+  color: #313131;
+}
+select {
+  margin-top: 10px;
+  border-radius: 10px;
+  height: 30px;
+  width: 200px;
+  text-align: center;
+  color: #313131;
+  text-align-last: center;
+}
+
+select option {
+  text-align: left;
+}
+
+div {
+  margin-top: 10px;
+  margin-left: 2px;
+  color: white;
+}
+
+button {
+  background-color: red;
+  height: 35px;
+  margin-top: 20px;
+}
+
+::placeholder {
+  color: #313131;
+  text-align: center;
+}
+
+button img {
+  width: 70px;
+  height: 30px;
+}
+
+footer {
+  position: sticky;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #181818;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+}

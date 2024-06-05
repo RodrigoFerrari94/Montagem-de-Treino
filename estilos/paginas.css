@@ -1,0 +1,155 @@
+body {
+  background-image: url(imagens/fundo-sessao.jpg);
+}
+header {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+input {
+  background-color: #0a0a0a00;
+  color: white;
+}
+
+header > div#container {
+  display: flex;
+  align-items: center;
+  font-size: 0.8em;
+  text-align: center;
+  margin: auto;
+}
+img {
+  margin: 0;
+  padding: 0;
+  width: 130px;
+  height: 100px;
+}
+#objetivo {
+  background-color: #0a0a0a00;
+  color: white;
+}
+main {
+  margin: auto;
+}
+
+div.exercicio-editar p {
+  padding: 3px;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+div.exercicio-editado {
+  color: rgb(255, 255, 255);
+  background-color: #0a0a0a00;
+  margin: auto;
+  margin-top: 10px;
+  border: #791f1f solid 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  text-align: center;
+  max-width: 360px;
+}
+
+div.exercicio-editado p {
+  padding: 2px;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  font-size: 1em;
+  line-height: 1px;
+}
+
+a {
+  margin: 20px;
+  background-color: #791f1f;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 1.5px solid transparent;
+  box-shadow: inset 0 0 0 1px black;
+}
+
+a:hover {
+  background-color: #0a0a0a;
+}
+
+input {
+  margin: 10px;
+}
+
+footer {
+  position: static;
+  left: 0;
+  bottom: 0px;
+  width: 100%;
+  background-color: #181818;
+  color: #fff;
+  text-align: center;
+  padding: 0px;
+}
+
+button {
+  margin: 10px;
+}
+
+.video-container {
+  width: 90%;
+  max-width: 560px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: fixed;
+  top: 30%;
+}
+.video-container > iframe {
+  width: 90%;
+  max-width: 560px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.contador-vermelho {
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  width: 140px;
+  height: 25px;
+  padding: 3px;
+  font-size: 1.2em;
+  border-radius: 40%;
+  background-color: rgb(209, 9, 9);
+  color: rgb(249, 247, 247);
+}
+div.exercicio-editar {
+  background-color: black;
+  color: white;
+  display: none;
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  margin: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 2px rgb(54, 54, 54) solid;
+  border-radius: 12px;
+}
+
+.contador-verde {
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 3px;
+
+  width: 140px;
+  height: 25px;
+  border-radius: 40%;
+  background-color: green;
+  color: rgb(255, 255, 255);
+  font-size: 1.2em;
+}
+select#visualizarsecao {
+  display: inline;
+  color: white;
+  background-color: rgb(63, 63, 63);
+  width: 100px;
+}
+div.visualizarseção > input {
+  display: inline;
+  color: white;
+  background-color: rgb(63, 63, 63);
+  width: 150px;
+}

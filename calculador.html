@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="estilos/estilo.css" />
+    <title>Vanderlei Ferrari</title>
+    <style>
+      body {
+        background-image: url(estilos/imagens/fundo-academia2.jpg);
+        background-size: contain;
+        background-attachment: fixed;
+
+        background-position-y: 35%;
+      }
+      h1,
+      h2 {
+        text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+      }
+      div.form {
+        text-align: left;
+        margin-left: 0px;
+      }
+      #container {
+        display: flex;
+        align-items: center;
+      }
+
+      button {
+        color: white;
+        width: 150px;
+        height: 50px;
+      }
+      div.visualizarseção > input {
+        display: inline;
+        color: white;
+        background-color: rgb(63, 63, 63);
+        width: 150px;
+      }
+      select#visualizarsecao {
+        display: inline;
+        color: white;
+        background-color: rgb(63, 63, 63);
+        width: 100px;
+      }
+
+      div#resultado1RM {
+        width: 250px;
+        height: 90px;
+        border-radius: 25px;
+        border: 1.5px solid transparent;
+        box-shadow: inset 0 0 0 1px black;
+        background-color: gray;
+        margin: auto;
+        margin-top: 5px;
+        display: none;
+      }
+
+      div#resultado1RM p {
+        font-size: 1.4em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        text-align: center;
+
+        padding-top: 8px;
+        color: White;
+      }
+
+      main h2 {
+        margin-bottom: 0px;
+        padding: 5px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #8b0000;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        margin-top: 20px;
+        border: 1.5px solid transparent;
+        box-shadow: inset 0 0 0 1px black;
+      }
+
+      .btn2 {
+        background-color: #8b0000;
+        color: #fff;
+        border-radius: 5px;
+        margin-top: 40px;
+        border: 1.5px solid transparent;
+        box-shadow: inset 0 0 0 1px black;
+        text-align: center center;
+      }
+
+      .btn:hover {
+        background-color: #0056b3;
+      }
+      #addTreino {
+        display: none;
+        position: fixed;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 380px;
+        text-align: center;
+        padding: 20px;
+
+        z-index: 999;
+        width: 210px;
+
+        border-radius: 25px;
+        border: 1.5px solid transparent;
+        box-shadow: inset 0 0 0 1px black;
+        background-color: gray;
+      }
+      #mostrar {
+        background-color: black;
+        border: none;
+        width: 100%;
+        height: 25px;
+        color: white;
+        font-size: 1.2em;
+        margin: auto;
+        padding: 0px;
+        display: none;
+      }
+      label {
+        display: block;
+        padding: 0px;
+        margin: 0px;
+        margin-top: 20px;
+        color: black;
+        font-size: 1.2em;
+        text-shadow: 1px solid white;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>
+        <p></p>
+        PREPARADO PARA CONHECER SUA FORÇA MÁXIMA?
+      </h1>
+    </header>
+    <main>
+      <h2>VAMOS COMEÇAR!!!</h2>
+
+      <div class="form">
+        <div id="container">
+          <div>
+            <input
+              type="text"
+              name="exercicio"
+              id="exercicio"
+              placeholder="Digite o nome do Exercício"
+            />
+            <input
+              type="number"
+              id="repetiçaomax"
+              name="rm"
+              placeholder="Repetições realizadas"
+            />
+            <input
+              type="number"
+              id="cargakg"
+              name="carga"
+              placeholder="Carga utilizada(KG)"
+            />
+            <input
+              type="number"
+              name="barra"
+              id="barrakg"
+              placeholder="Digite cargas Extras (KG)"
+            />
+            <select name="percentual" id="percentualPeso">
+              <option value="0">
+                0%(Exercício não utiliza peso do corpo.)
+              </option>
+              <option value="90">
+                90%(ex:Barra Fixa, Paralela, Panturrilha)
+              </option>
+              <option value="70">70%(ex:Agachamentos)</option>
+              <option value="40">40%(ex:Apoio, elevacão pélvica)</option>
+              <option value="20">20%(ex:Abdominais)</option>
+            </select>
+          </div>
+          <div>
+            <button type="button" onclick="calcular()">Calcular 1 RM</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="resultado1RM"></div>
+      <input
+        id="mostrar"
+        type="button"
+        value="Adicionar exercicio ao treino?"
+        onclick="mostrarAddTreino()"
+      />
+
+      <div id="addTreino">
+        <label for="secao">Qual Seção deseja adicionar?</label>
+
+        <select name="secao" id="secao">
+          <option value="a">Treino A</option>
+          <option value="b">Treino B</option>
+          <option value="c">Treino C</option>
+          <option value="d">Treino D</option>
+          <option value="e">Treino E</option>
+          <option value="f">Treino F</option>
+        </select>
+
+        <label for="objetivo">Qual seu Objetivo?</label>
+
+        <select name="objetivo" id="objetivo">
+          <option value="adaptacao">Adaptacão</option>
+          <option value="resistencia">Resistencia Muscular Localizada</option>
+          <option value="hipertrofia">Hipertrofia</option>
+          <option value="forca">Força Máxima</option>
+        </select>
+        <label for="video">Incorporar Vídeo:</label>
+        <input
+          type="text"
+          id="video"
+          name="video"
+          placeholder="Incorpore o vídeo"
+        />
+
+        <label for="add">Adicionar exercício a seção</label>
+
+        <input
+          type="button"
+          name="add"
+          value="Adicionar Exercício"
+          onclick="criarExercicio()"
+        />
+      </div>
+      <div class="visualizarseção">
+        <input
+          type="button"
+          value="Visualizar Seção"
+          onclick="visualizarTreino()"
+        />
+        <select name="visualizarTreino" id="visualizarsecao">
+          <option value="a">Treino A</option>
+          <option value="b">Treino B</option>
+          <option value="c">Treino C</option>
+          <option value="d">Treino D</option>
+          <option value="e">Treino E</option>
+          <option value="f">Treino F</option>
+        </select>
+      </div>
+
+      <a href="index.html" class="btn">Voltar para a Página Inicial</a>
+
+      <footer>
+        <p>&copy; 2024 Rodrigo Ferrari Personal trainer</p>
+      </footer>
+    </main>
+    <footer></footer>
+    <script src="visualizar-treino.js"></script>
+    <script>
+      var nome;
+
+      nome = localStorage.getItem("nomevd");
+
+      document.querySelector("header h1 p").innerHTML +=
+        "OLÁ " + nome.toUpperCase() + ",";
+
+      var treinoA = JSON.parse(localStorage.getItem("treinoAvd")) || [];
+      var treinoB = JSON.parse(localStorage.getItem("treinoBvd")) || [];
+      var treinoC = JSON.parse(localStorage.getItem("treinoCvd")) || [];
+      var treinoD = JSON.parse(localStorage.getItem("treinoDvd")) || [];
+      var treinoE = JSON.parse(localStorage.getItem("treinoEvd")) || [];
+      var treinoF = JSON.parse(localStorage.getItem("treinoFvd")) || [];
+
+      var peso = localStorage.getItem("pesovd");
+      var nivel = localStorage.getItem("nivelvd");
+
+      function newExercicio(
+        exercicio,
+        formulaGeral,
+        cargaExercicio,
+        repeticoes,
+        serie,
+        tempoDescanso,
+        videoUrl,
+        contador
+      ) {
+        return {
+          exercicio: exercicio,
+          formulaGeral: formulaGeral,
+          cargaExercicio: cargaExercicio,
+          repeticoes: repeticoes,
+          serie: serie,
+          tempoDescanso: tempoDescanso,
+          videoUrl: videoUrl,
+          contador: contador,
+        };
+      }
+
+      var novoExercicio;
+
+      var rm,
+        barra,
+        percentualPeso,
+        resultado,
+        formula,
+        formulaGeral,
+        carga,
+        cargaMinima,
+        cargaMax,
+        videoUrl,
+        contador;
+
+      var regex = /^\d+$/;
+
+      function calcular() {
+        peso = Number(localStorage.getItem("pesovd"));
+        nivel = localStorage.getItem("nivelvd");
+
+        formula = "";
+        rm = Number(document.getElementById("repetiçaomax").value);
+        carga = Number(document.getElementById("cargakg").value);
+        barra = Number(document.getElementById("barrakg").value);
+
+        switch (document.getElementById("percentualPeso").value) {
+          case "0":
+            percentualPeso = peso * 0;
+            break;
+          case "90":
+            percentualPeso = Math.round(peso * 0.9);
+            break;
+          case "70":
+            percentualPeso = Math.round(peso * 0.7);
+            break;
+          case "40":
+            percentualPeso = Math.round(peso * 0.4);
+            break;
+          case "20":
+            percentualPeso = Math.round(peso * 0.2);
+            break;
+        }
+        carga += barra + percentualPeso;
+        exercicio = document.getElementById("exercicio").value;
+
+        resultado = document.getElementById("resultado1RM");
+
+        cargaMinima = "";
+        cargaMax = "";
+        regex = /^\d+$/;
+
+        if (
+          !rm ||
+          !regex.test(rm) ||
+          !carga ||
+          !regex.test(carga) ||
+          !exercicio.trim()
+        ) {
+          window.alert("[ERRO] Preencha os dados corretamente!!!");
+        } else {
+          if (rm === 1) {
+            formula = carga;
+          } else if (nivel === "iniciante") {
+            formula = Math.round(0.033 * rm * carga + carga);
+          } else if (nivel === "experiente") {
+            formula = Math.round(carga * (1 + 0.025 * rm));
+          }
+          formulaGeral = Math.round(formula - barra - percentualPeso);
+          resultado.innerHTML = "";
+
+          resultado.innerHTML += `<p>${exercicio}</p>`;
+          resultado.innerHTML += `<p>1RM ≈ <strong>${formulaGeral} KG</strong>.</p>`;
+          resultado.style.display = "block";
+          document.getElementById("mostrar").style.display = "block";
+        }
+      }
+      var repeticoes, tempoDescanso, serie, cargaExercicio, sessao;
+
+      function criarExercicio() {
+        switch (document.getElementById("objetivo").value) {
+          case "adaptacao":
+            cargaMinima = Math.round(formula * 0.45 - barra - percentualPeso);
+            cargaMax = Math.round(formula * 0.55 - barra - percentualPeso);
+            tempoDescanso = "0:45 min a 1:30min";
+            contador = 60;
+            repeticoes = "10 a 15";
+            serie = "2 a 3";
+            cargaExercicio = `Entre ${cargaMinima}kg e ${cargaMax}kg `;
+            videoUrl = document.getElementById("video").value;
+
+            break;
+          case "resistencia":
+            cargaMinima = Math.round(formula * 0.6 - barra - percentualPeso);
+            cargaMax = Math.round(formula * 0.7 - barra - percentualPeso);
+            tempoDescanso = "1:00min a 2:00min";
+            contador = 90;
+            repeticoes = "15 a 30";
+            serie = "3";
+            cargaExercicio = `Entre ${cargaMinima}kg e ${cargaMax} kg`;
+            videoUrl = document.getElementById("video").value;
+
+            break;
+          case "hipertrofia":
+            cargaMinima = Math.round(formula * 0.7 - barra - percentualPeso);
+            cargaMax = Math.round(formula * 0.85 - barra - percentualPeso);
+            tempoDescanso = "1:30min a 3:00min";
+            contador = 120;
+            repeticoes = "8 a 12";
+            serie = "3 a 4";
+            cargaExercicio = `Entre ${cargaMinima}kg e ${cargaMax} kg`;
+            videoUrl = document.getElementById("video").value;
+
+            break;
+          case "forca":
+            cargaMinima = Math.round(formula * 0.85 - barra - percentualPeso);
+            cargaMax = Math.round(formula - barra - percentualPeso);
+            tempoDescanso = "3:00 min a 5:00 min";
+            contador = 240;
+            repeticoes = "3 a 6";
+            serie = "4 a 6";
+            cargaExercicio = `Entre ${cargaMinima}kg e ${cargaMax} kg`;
+            videoUrl = document.getElementById("video").value;
+
+            break;
+        }
+
+        novoExercicio = newExercicio(
+          exercicio,
+          formulaGeral,
+          cargaExercicio,
+          repeticoes,
+          serie,
+          tempoDescanso,
+          videoUrl,
+          contador
+        );
+
+        addExercicio();
+      }
+      function addExercicio() {
+        switch (document.getElementById("secao").value) {
+          case "a":
+            treinoA.push(novoExercicio);
+
+            alert("Adicionado a seção A");
+
+            break;
+          case "b":
+            treinoB.push(novoExercicio);
+
+            alert("Adicionado a seção B");
+
+            break;
+          case "c":
+            treinoC.push(novoExercicio);
+
+            alert("Adicionado a seção C");
+            break;
+          case "d":
+            treinoD.push(novoExercicio);
+
+            alert("Adicionado a seção D");
+            break;
+
+          case "e":
+            treinoE.push(novoExercicio);
+
+            alert("Adicionado a seção E");
+            break;
+
+          case "f":
+            treinoF.push(novoExercicio);
+
+            alert("Adicionado a seção F");
+
+            break;
+        }
+
+        localStorage.setItem("treinoAvd", JSON.stringify(treinoA));
+        localStorage.setItem("treinoBvd", JSON.stringify(treinoB));
+        localStorage.setItem("treinoCvd", JSON.stringify(treinoC));
+        localStorage.setItem("treinoDvd", JSON.stringify(treinoD));
+        localStorage.setItem("treinoEvd", JSON.stringify(treinoE));
+        localStorage.setItem("treinoFvd", JSON.stringify(treinoF));
+      }
+
+      function mostrarAddTreino() {
+        var addTreinoDiv = document.getElementById("addTreino");
+        addTreinoDiv.style.display = "block";
+      }
+
+      document.addEventListener("click", function (event) {
+        var addTreinoDiv = document.getElementById("addTreino");
+        if (
+          !event.target.closest("#addTreino") &&
+          !event.target.matches("[onclick='mostrarAddTreino()']")
+        ) {
+          addTreinoDiv.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyBWVjx2bbIzcxs-cYNR1KP1RpInGGaqpkE",
+      authDomain: "calcular-1rm.firebaseapp.com",
+      projectId: "calcular-1rm",
+      storageBucket: "calcular-1rm.appspot.com",
+      messagingSenderId: "1038061225814",
+      appId: "1:1038061225814:web:754f133b5cdf2a2862f8f7",
+      measurementId: "G-L6L6MDQ5QN",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+</html>

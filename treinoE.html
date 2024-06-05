@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="estilos/paginas.css" />
+
+    <title>Vanderlei Ferrari</title>
+  </head>
+  <body>
+    <header>
+      <input
+        type="button"
+        value="Editar Dados"
+        style="position: absolute; top: 0; left: 0"
+        onclick="editarObjetivo()"
+      />
+
+      <div id="container">
+        <img src="estilos/imagens/logo.png" alt="Logo Personal" />
+        <div id="info">
+          <h1 id="obj"></h1>
+          <h1 id="ses"></h1>
+          <h1 id="nom"></h1>
+          <div id="editarInfo" style="display: none">
+            <input
+              type="text"
+              placeholder="Escreva um Objetivo"
+              id="alterarObjetivo"
+            />
+            <input type="text" placeholder="Escreva o Nome" id="alterarNome" />
+
+            <input
+              type="button"
+              value="Salvar Edição"
+              onclick="salvarEdicao()"
+            />
+            <input type="button" value="Cancelar" onclick="cancelarObj()" />
+          </div>
+        </div>
+      </div>
+    </header>
+    <main></main>
+    <a href="calculador.html">Voltar</a>
+    <div class="visualizarseção">
+      <input
+        type="button"
+        value="Visualizar Seção"
+        onclick="visualizarTreino()"
+      />
+      <select name="visualizarTreino" id="visualizarsecao">
+        <option value="a">Treino A</option>
+        <option value="b">Treino B</option>
+        <option value="c">Treino C</option>
+        <option value="d">Treino D</option>
+        <option value="e" selected>Treino E</option>
+        <option value="f">Treino F</option>
+      </select>
+    </div>
+    <div><input type="button" value="Gerar Treino" onclick="gerarPDF()" /></div>
+
+    <footer>
+      <p>&copy; 2024 Rodrigo Ferrari Personal trainer</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    <script src="visualizar-treino.js"></script>
+    <script>
+      var treinoA = JSON.parse(localStorage.getItem("treinoAvd")) || [];
+      var treinoB = JSON.parse(localStorage.getItem("treinoBvd")) || [];
+      var treinoC = JSON.parse(localStorage.getItem("treinoCvd")) || [];
+      var treinoD = JSON.parse(localStorage.getItem("treinoDvd")) || [];
+      var treinoE = JSON.parse(localStorage.getItem("treinoEvd")) || [];
+      var treinoF = JSON.parse(localStorage.getItem("treinoFvd")) || [];
+      var sessao = document.getElementById("visualizarsecao").value;
+      if (document.getElementById("visualizarsecao").value === "e") {
+        sessao = "Seção E";
+      }
+      var objetivo = localStorage.getItem("objetivovd");
+      var obj = document.getElementById("obj");
+      var ses = document.getElementById("ses");
+      var nomeUsuario = document.getElementById("nom");
+      var nome = localStorage.getItem("nomevd");
+
+      var main = document.querySelector("main");
+
+      var header = document.getElementById("info");
+
+      obj.innerHTML = `${objetivo}` || "Treino";
+      ses.innerHTML = `${sessao}`;
+      nomeUsuario.innerHTML = `${nome}`;
+
+      if (treinoE) {
+        var editarInf = document.getElementById("editarInfo");
+
+        function editarObjetivo() {
+          document.getElementById("editarInfo").style.display = "block";
+          document.getElementById("alterarObjetivo").value = obj.innerText;
+          document.getElementById("alterarNome").value = nomeUsuario.innerText;
+        }
+        function cancelarObj() {
+          document.getElementById("editarInfo").style.display = "none";
+        }
+
+        function salvarEdicao() {
+          var editarObj = document.getElementById("alterarObjetivo").value;
+          var editarNome = document.getElementById("alterarNome").value;
+
+          obj.innerText = editarObj;
+          nomeUsuario.innerText = editarNome;
+
+          document.getElementById("editarInfo").style.display = "none";
+
+          localStorage.setItem("nomevd", editarNome);
+          localStorage.setItem("objetivovd", editarObj);
+        }
+        treinoE.forEach((item, index) => {
+          main.innerHTML += `<div class="exercicio-editar" >
+                    <p>Exercíco:<input type="text" id="exercicio-${index}" value="${item.exercicio}" > 1RM ≈ <input type="text" id="formulaGeral-${index}" value= "${item.formulaGeral}"></p>
+                    <p>Carga: <input type="text" id="carga-${index}" value="${item.cargaExercicio}"></p>
+                    <p>Repetições: <input type="text" id="repeticoes-${index}" value="${item.repeticoes}"></p>
+                    <p>Séries: <input type="text" id="serie-${index}" value="${item.serie}"></p>
+                    <p>Descanso: <input type="text" id="descanso-${index}" value="${item.tempoDescanso}"></p>
+                    <p>Contador: <input type="number" id="contador-${index}" value="${item.contador}"></p>
+
+                    <p>Incorporar Video: <input type="text" id="video-${index}" value=""> <input type="button" id="videoButton-${index}" value="Salvar Video" onclick="salvarVideo(${index})"></p>
+                    <button onclick="salvar(${index})">Salvar</button>
+                    <button onclick="cancelar(${index})">Cancelar</button>
+                    </div>
+                    
+                    
+
+                    <div class="exercicio-editado" >
+                    <p>${item.exercicio} 1RM ≈ ${item.formulaGeral}Kg</p>
+                    <p>Carga:${item.cargaExercicio}</p>
+                    <p>Repetições: ${item.repeticoes}</p>
+                    <p>Séries: ${item.serie}</p>
+                    <p>Descanso: ${item.tempoDescanso}</p> <div id="playStop"><input type="button" value="Play" id="buttonTimer-${index}" onclick="iniciarContador(${index})"><input type="button" value="Stop" id="stopTimer-${index}" onclick="stopContador(${index})"></div>
+                    <div id="timer-${index}" class="timer-tempo"></div>
+                    
+                    <button onclick="editar(${index})">Editar</button>
+                    <button style="background-color: #8b0000; color: #fff; font-size: 1.1em;border: none; border-radius: 5px; cursor: pointer;" onclick="verVideo(${index})">Video</button><button id="finalizar-${index}" onclick="finalizarExer(${index})" >Finalizar</button>
+                    <div id="verVideo-${index}" class="video-container" style="display:none">${item.videoUrl}</div>
+
+                    </div>
+
+                    `;
+          var divs = document.querySelectorAll("main div.exercicio-editado");
+          divs.forEach((div, i) => {
+            if (index === i) {
+              div.innerHTML += `<button style="display: Block; margin-left : 0px;" onclick="apagar(${index})">Apagar</button>`;
+            }
+          });
+        });
+      }
+      var intervalId;
+
+      function iniciarContador(index) {
+        var buttonTimer = document.getElementById(`buttonTimer-${index}`);
+        buttonTimer.style.display = "none";
+        var timerElement = document.getElementById(`timer-${index}`);
+        var tempoTotal = parseInt(
+          document.getElementById(`contador-${index}`).value
+        );
+        var tempoRestante = tempoTotal;
+
+        timerElement.innerHTML = formatarTempo(tempoRestante);
+        timerElement.classList.remove("contador-verde");
+        timerElement.classList.add("contador-vermelho");
+
+        intervalId = setInterval(function () {
+          tempoRestante--;
+
+          if (tempoRestante <= 0) {
+            clearInterval(intervalId);
+            timerElement.classList.remove("contador-vermelho");
+            timerElement.classList.add("contador-verde");
+            buttonTimer.style.display = "inline";
+            timerElement.innerHTML = "Próxima Série";
+          } else {
+            timerElement.innerHTML = formatarTempo(tempoRestante);
+          }
+        }, 1000);
+      }
+      function stopContador(index) {
+        clearInterval(intervalId);
+        var timerElement = document.getElementById(`timer-${index}`);
+        var buttonTimer = document.getElementById(`buttonTimer-${index}`);
+        timerElement.classList.remove("contador-vermelho");
+        timerElement.classList.add("contador-verde");
+        buttonTimer.style.display = "inline";
+        timerElement.innerHTML = "Próxima Série";
+      }
+      function finalizarExer(index) {
+        clearInterval(intervalId);
+        var timerElement = document.getElementById(`timer-${index}`);
+        var buttonTimer = document.getElementById(`buttonTimer-${index}`);
+        timerElement.classList.remove("contador-verde");
+        timerElement.classList.add("contador-vermelho");
+        buttonTimer.style.display = "inline";
+        timerElement.innerHTML = "Finalizado";
+      }
+
+      function formatarTempo(segundos) {
+        var minutos = Math.floor((segundos % 3600) / 60);
+        var segundosRestantes = segundos % 60;
+        return `${minutos.toString().padStart(2, "0")}:${segundosRestantes
+          .toString()
+          .padStart(2, "0")}`;
+      }
+      function verVideo(index) {
+        var divVerVideo = document.getElementById(`verVideo-${index}`);
+        divVerVideo.style.display = "block";
+        document.addEventListener("click", function (event) {
+          if (
+            !divVerVideo.contains(event.target) &&
+            !event.target.matches(`[onclick="verVideo(${index})"]`)
+          ) {
+            divVerVideo.style.display = "none";
+          }
+        });
+      }
+
+      function salvarVideo(index) {
+        var videoUrl = document.getElementById(`video-${index}`).value;
+        treinoE[index].videoUrl = videoUrl;
+        localStorage.setItem("treinoEvd", JSON.stringify(treinoE));
+
+        salvar(index);
+      }
+
+      function salvar(index) {
+        var exercicio = document.getElementById(`exercicio-${index}`).value;
+        var formulaGeral = document.getElementById(
+          `formulaGeral-${index}`
+        ).value;
+        var carga = document.getElementById(`carga-${index}`).value;
+        var repeticoes = document.getElementById(`repeticoes-${index}`).value;
+        var serie = document.getElementById(`serie-${index}`).value;
+        var descanso = document.getElementById(`descanso-${index}`).value;
+        var contador = document.getElementById(`contador-${index}`).value;
+
+        treinoE[index].formulaGeral = formulaGeral;
+        treinoE[index].exercicio = exercicio;
+        treinoE[index].cargaExercicio = carga;
+        treinoE[index].repeticoes = repeticoes;
+        treinoE[index].serie = serie;
+        treinoE[index].tempoDescanso = descanso;
+        treinoE[index].contador = contador;
+
+        localStorage.setItem("treinoEvd", JSON.stringify(treinoE));
+
+        alert("Alterações salvas com sucesso!");
+
+        location.reload();
+      }
+      function apagar(index) {
+        treinoE.splice(index, 1);
+        localStorage.setItem("treinoEvd", JSON.stringify(treinoE));
+        main.innerHTML = "";
+        location.reload();
+      }
+      function gerarPDF() {
+        var buttons = document.querySelectorAll("button");
+        var inputs = document.querySelectorAll("input");
+        var timers = document.querySelectorAll("div.timer-tempo");
+        var videos = document.querySelectorAll("div.video-container");
+
+        var select = document.querySelector("select");
+        var a = document.querySelector("a");
+
+        // Ocultar todos os botões
+        buttons.forEach(function (button) {
+          button.style.display = "none";
+        });
+
+        // Ocultar todos os inputs
+        inputs.forEach(function (input) {
+          input.style.display = "none";
+        });
+        timers.forEach(function (timer) {
+          timer.style.display = "none";
+        });
+        videos.forEach(function (video1) {
+          video1.style.display = "none";
+        });
+        select.style.display = "none";
+        a.style.display = "none";
+
+        var element = document.querySelector("body");
+
+        // Gerar PDF
+        html2pdf(element).then(function () {
+          // Após a conclusão da geração do PDF, restaurar os estilos
+
+          // Restaurar estilos para todos os botões
+          buttons.forEach(function (button) {
+            button.style.display = ""; // Define para o estilo padrão (vazio)
+          });
+
+          // Restaurar estilos para todos os inputs
+          inputs.forEach(function (input) {
+            input.style.display = ""; // Define para o estilo padrão (vazio)
+          });
+          timers.forEach(function (timer) {
+            timer.style.display = "";
+          });
+          videos.forEach(function (video1) {
+            video1.style.display = "";
+          });
+          select.style.display = "";
+          a.style.display = "";
+        });
+      }
+      localStorage.setItem("treinoAvd", JSON.stringify(treinoA));
+      localStorage.setItem("treinoBvd", JSON.stringify(treinoB));
+      localStorage.setItem("treinoCvd", JSON.stringify(treinoC));
+      localStorage.setItem("treinoDvd", JSON.stringify(treinoD));
+      localStorage.setItem("treinoEvd", JSON.stringify(treinoE));
+      localStorage.setItem("treinoFvd", JSON.stringify(treinoF));
+    </script>
+  </body>
+</html>
