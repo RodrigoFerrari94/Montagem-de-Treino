@@ -220,12 +220,10 @@
           <option value="forca">Força Máxima</option>
         </select>
         <label for="video">Incorporar Vídeo:</label>
-        <input
-          type="text"
-          id="video"
-          name="video"
-          placeholder="Incorpore o vídeo"
-        />
+        <select name="video" id="video" placeholder="Incorpore um Video">
+          <option value="0" selected>Sem video</option>
+          <option value="1">Supino Reto</option>
+        </select>
 
         <label for="add">Adicionar exercício a seção</label>
 
@@ -349,7 +347,6 @@
 
         cargaMinima = "";
         cargaMax = "";
-        regex = /^\d+$/;
 
         if (
           !rm ||
@@ -388,7 +385,6 @@
             repeticoes = "10 a 15";
             serie = "2 a 3";
             cargaExercicio = `Entre ${cargaMinima}kg e ${cargaMax}kg `;
-            videoUrl = document.getElementById("video").value;
 
             break;
           case "resistencia":
@@ -399,7 +395,6 @@
             repeticoes = "15 a 30";
             serie = "3";
             cargaExercicio = `Entre ${cargaMinima}kg e ${cargaMax} kg`;
-            videoUrl = document.getElementById("video").value;
 
             break;
           case "hipertrofia":
@@ -410,7 +405,6 @@
             repeticoes = "8 a 12";
             serie = "3 a 4";
             cargaExercicio = `Entre ${cargaMinima}kg e ${cargaMax} kg`;
-            videoUrl = document.getElementById("video").value;
 
             break;
           case "forca":
@@ -421,7 +415,16 @@
             repeticoes = "3 a 6";
             serie = "4 a 6";
             cargaExercicio = `Entre ${cargaMinima}kg e ${cargaMax} kg`;
-            videoUrl = document.getElementById("video").value;
+
+            break;
+        }
+        switch (document.getElementById("video").value) {
+          case "0":
+            videoUrl = "";
+
+            break;
+          case "1":
+            videoUrl = `<iframe width="560" height="315" src="https://www.youtube.com/embed/72UUJVBuT7o?si=ut6VwWZeqxVJ_bqa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
 
             break;
         }
