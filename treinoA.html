@@ -87,6 +87,7 @@
       var header = document.getElementById("info");
       if (objetivo === null) {
         objetivo = "Treino de Musculação";
+        localStorage.setItem("objetivo", objetivo);
       }
 
       obj.innerHTML = `${objetivo}`;
