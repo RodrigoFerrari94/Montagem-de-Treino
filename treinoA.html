@@ -85,8 +85,11 @@
       var main = document.querySelector("main");
 
       var header = document.getElementById("info");
+      if (objetivo === null) {
+        objetivo = "Treino de Musculação";
+      }
 
-      obj.innerHTML = `${objetivo}` || "Treino";
+      obj.innerHTML = `${objetivo}`;
       ses.innerHTML = `${sessao}`;
       nomeUsuario.innerHTML = `${nome}`;
 

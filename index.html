@@ -8,6 +8,7 @@
   </head>
   <body>
     <header>
+      <img src="estilos/imagens/logo.png" alt="Logo Personal" />
       <h1>ESTAMOS AQUI PARA AJUDAR VOCÊ A ALCANÇAR SEU POTENCIAL MÁXIMO.</h1>
     </header>
     <main>
@@ -35,7 +36,7 @@
         <input
           type="button"
           value="Visualizar Seção"
-          onclick="visualizarTreino()"
+          onclick="visualizarTreinos()"
         />
         <select name="visualizarTreino" id="visualizarsecao">
           <option value="a">Treino A</option>
@@ -53,15 +54,26 @@
     </footer>
     <script src="visualizar-treino.js"></script>
     <script>
+      var nome = localStorage.getItem("nome");
+      var peso = localStorage.getItem("peso");
+      var nivel = localStorage.getItem("nivel");
+      var regex = /^\d+$/;
+      function visualizarTreinos() {
+        if (!nome || !peso || !nivel) {
+          alert("Preencha os dados antes de Avançar!!!");
+        } else {
+          visualizarTreino();
+        }
+      }
+
       function salvarDados() {
-        var nome = document.getElementById("nome").value;
-        var peso = document.getElementById("peso").value;
-        var nivel = document.getElementById("nivel").value;
-        var regex = /^\d+$/;
+        nome = document.getElementById("nome").value;
+        peso = document.getElementById("peso").value;
+        nivel = document.getElementById("nivel").value;
 
         if (!regex.test(peso)) {
           window.alert("[ERRO] Peso somente utilize números inteiros!!!");
-        } else if (nivel === "" || !nome.trim()) {
+        } else if (!nivel || !nome.trim()) {
           window.alert("[ERRO] Preencha os dados corretamente!!!");
         } else {
           localStorage.setItem("nome", nome);
