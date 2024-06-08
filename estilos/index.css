@@ -1,5 +1,4 @@
 @charset "UTF-8";
-
 * {
   margin: 0;
   padding: 0;
@@ -10,6 +9,11 @@ body {
   background-image: url(imagens/fundo-academia.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+}
+header {
+  text-align: center;
+  margin: 0%;
+  background-color: rgba(0, 0, 0, 0.942);
 }
 h1 {
   color: white;
@@ -57,19 +61,25 @@ div {
   margin-top: 10px;
   margin-left: 2px;
   color: white;
+  text-align: center;
 }
 
 button {
   background-color: red;
   height: 35px;
+  margin: auto;
   margin-top: 20px;
+  display: block;
 }
 
 ::placeholder {
   color: #313131;
   text-align: center;
 }
-
+img {
+  width: 200px;
+  height: 200px;
+}
 button img {
   width: 70px;
   height: 30px;
@@ -84,4 +94,14 @@ footer {
   color: #fff;
   text-align: center;
   padding: 5px;
+}
+
+a#whatsapp {
+  position: fixed;
+  top: 65%;
+  left: 75%;
+}
+a > img {
+  width: 90px;
+  height: 50px;
 }

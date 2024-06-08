@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 body {
   background-image: url(imagens/fundo-sessao.jpg);
 }
@@ -32,7 +34,7 @@ main {
   margin: auto;
 }
 
-div.exercicio-editar p {
+div.exercicio-editar > p {
   padding: 3px;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
@@ -48,7 +50,7 @@ div.exercicio-editado {
   max-width: 360px;
 }
 
-div.exercicio-editado p {
+div.exercicio-editado > p {
   padding: 2px;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   font-size: 1em;
@@ -56,11 +58,14 @@ div.exercicio-editado p {
 }
 
 a {
-  margin: 20px;
-  background-color: #791f1f;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #8b0000;
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
+  transition: background-color 0.3s ease;
+  margin-top: 40px;
   border: 1.5px solid transparent;
   box-shadow: inset 0 0 0 1px black;
 }
@@ -68,20 +73,21 @@ a {
 a:hover {
   background-color: #0a0a0a;
 }
+a#whatsapp {
+  position: fixed;
+  top: 75%;
+  left: 75%;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+
+a#whatsapp > img {
+  width: 90px;
+  height: 50px;
+}
 
 input {
   margin: 10px;
-}
-
-footer {
-  position: static;
-  left: 0;
-  bottom: 0px;
-  width: 100%;
-  background-color: #181818;
-  color: #fff;
-  text-align: center;
-  padding: 0px;
 }
 
 button {
@@ -102,19 +108,7 @@ button {
   margin: 0 auto;
   overflow: hidden;
 }
-.contador-vermelho {
-  margin: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
 
-  width: 140px;
-  height: 25px;
-  padding: 3px;
-  font-size: 1.2em;
-  border-radius: 40%;
-  background-color: rgb(209, 9, 9);
-  color: rgb(249, 247, 247);
-}
 div.exercicio-editar {
   background-color: black;
   color: white;
@@ -133,7 +127,6 @@ div.exercicio-editar {
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 3px;
-
   width: 140px;
   height: 25px;
   border-radius: 40%;
@@ -141,15 +134,40 @@ div.exercicio-editar {
   color: rgb(255, 255, 255);
   font-size: 1.2em;
 }
+.contador-vermelho {
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 140px;
+  height: 25px;
+  padding: 3px;
+  font-size: 1.2em;
+  border-radius: 40%;
+  background-color: rgb(209, 9, 9);
+  color: rgb(249, 247, 247);
+}
+
 select#visualizarsecao {
   display: inline;
   color: white;
   background-color: rgb(63, 63, 63);
   width: 100px;
 }
+
 div.visualizarseção > input {
   display: inline;
   color: white;
   background-color: rgb(63, 63, 63);
   width: 150px;
+}
+
+footer {
+  position: static;
+  left: 0;
+  bottom: 0px;
+  width: 100%;
+  background-color: #181818;
+  color: #fff;
+  text-align: center;
+  padding: 0px;
 }
