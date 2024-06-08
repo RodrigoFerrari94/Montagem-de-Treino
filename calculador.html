@@ -246,35 +246,35 @@
           onclick="criarExercicio()"
         />
       </div>
-      <div class="visualizarseção">
-        <input
-          type="button"
-          value="Visualizar Seção"
-          onclick="visualizarTreino()"
-        />
-        <select name="visualizarTreino" id="visualizarsecao">
-          <option value="a">Treino A</option>
-          <option value="b">Treino B</option>
-          <option value="c">Treino C</option>
-          <option value="d">Treino D</option>
-          <option value="e">Treino E</option>
-          <option value="f">Treino F</option>
-        </select>
-      </div>
-      <a
-        id="whatsapp"
-        href="https://api.whatsapp.com/send?phone=5551995361994&text=Poderia%20me%20Ajudar?"
-      >
-        <img src="estilos/imagens/whatsapp.webp" alt="Botão WhatsApp"
-      /></a>
-
-      <a href="index.html" class="btn">Voltar para a Página Inicial</a>
-
-      <footer>
-        <p>&copy; 2024 Rodrigo Ferrari Personal trainer</p>
-      </footer>
     </main>
-    <footer></footer>
+
+    <div class="visualizarseção">
+      <input
+        type="button"
+        value="Visualizar Seção"
+        onclick="visualizarTreino()"
+      />
+      <select name="visualizarTreino" id="visualizarsecao">
+        <option value="a">Treino A</option>
+        <option value="b">Treino B</option>
+        <option value="c">Treino C</option>
+        <option value="d">Treino D</option>
+        <option value="e">Treino E</option>
+        <option value="f">Treino F</option>
+      </select>
+    </div>
+    <a
+      id="whatsapp"
+      href="https://api.whatsapp.com/send?phone=5551995361994&text=Poderia%20me%20Ajudar?"
+    >
+      <img src="estilos/imagens/whatsapp.webp" alt="Botão WhatsApp"
+    /></a>
+
+    <a href="index.html" class="btn">Voltar para a Página Inicial</a>
+
+    <footer>
+      <p>&copy; 2024 Rodrigo Ferrari Personal trainer</p>
+    </footer>
     <script src="visualizar-treino.js"></script>
     <script>
       var nome = localStorage.getItem("nome");
