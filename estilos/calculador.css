@@ -86,12 +86,6 @@ div {
   margin-top: 10px;
   color: white;
 }
-div.form {
-  text-align: center;
-  align-items: center;
-  margin: auto;
-  justify-content: center;
-}
 
 #container {
   display: flex;
