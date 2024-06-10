@@ -56,6 +56,10 @@ div.exercicio-editado > p {
   font-size: 1em;
   line-height: 1px;
 }
+button.oculto {
+  display: none;
+  margin: auto;
+}
 
 a {
   display: inline-block;
@@ -103,14 +107,19 @@ a#whatsapp2 > img {
 a#whatsapp {
   position: fixed;
   top: 75%;
-  left: 75%;
+  left: 73%;
   background-color: rgba(0, 0, 0, 0);
   border: none;
+  box-shadow: none;
 }
 
 a#whatsapp > img {
   width: 90px;
   height: 50px;
+}
+a#whatsapp > p {
+  padding: 0px;
+  margin: 0px;
 }
 
 input {
