@@ -15,13 +15,20 @@ header {
   margin: 0%;
   background-color: rgba(0, 0, 0, 0.942);
 }
+img#logo {
+  width: 150px;
+  height: 150px;
+  margin-top: 10px;
+  margin-bottom: -15px;
+  padding-bottom: 0px;
+}
 h1 {
   color: white;
   background-color: rgba(0, 0, 0, 0.758);
   text-align: center;
   font-size: 1.6em;
   padding: 13px;
-  padding-top: 40px;
+  padding-top: 10px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 h2 {
@@ -76,10 +83,7 @@ button {
   color: #313131;
   text-align: center;
 }
-img {
-  width: 200px;
-  height: 200px;
-}
+
 button img {
   width: 70px;
   height: 30px;
@@ -95,13 +99,31 @@ footer {
   text-align: center;
   padding: 5px;
 }
+div#contatos {
+  display: flex;
+  justify-content: center;
+  margin-top: 0px;
+}
+
+a#instagram > img {
+  width: 30px;
+  height: 30px;
+  padding-left: 15px;
+}
+
+a#whatsapp2 > img {
+  width: 53px;
+  height: 28px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+}
 
 a#whatsapp {
   position: fixed;
   top: 65%;
   left: 75%;
 }
-a > img {
+a#whatsapp > img {
   width: 90px;
   height: 50px;
 }
