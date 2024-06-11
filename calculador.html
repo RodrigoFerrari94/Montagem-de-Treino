@@ -213,6 +213,7 @@
           </select>
         </div>
         <div>
+          <div id="iframe"></div>
           <button type="button" onclick="calcular()">Calcular 1 RM</button>
         </div>
       </div>
@@ -343,6 +344,12 @@
       var regex = /^\d+$/;
 
       function calcular() {
+        exercicio = document.getElementById("exercicio").value;
+        addVideo();
+        divIframe = document.getElementById("iframe");
+
+        divIframe.innerHTML = videoUrl;
+
         peso = Number(localStorage.getItem("peso"));
         nivel = localStorage.getItem("nivel");
 
@@ -369,7 +376,6 @@
             break;
         }
         carga += barra + percentualPeso;
-        exercicio = document.getElementById("exercicio").value;
 
         resultado = document.getElementById("resultado1RM");
 
@@ -446,13 +452,6 @@
 
             break;
         }
-        videoUrl = exercicio;
-        switch (videoUrl) {
-          case "Supino-Reto-Barra":
-            videoUrl = `<iframe width="560" height="315" src="https://www.youtube.com/embed/72UUJVBuT7o?si=ut6VwWZeqxVJ_bqa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
-
-            break;
-        }
 
         novoExercicio = newExercicio(
           exercicio,
@@ -512,6 +511,15 @@
         localStorage.setItem("treinoD", JSON.stringify(treinoD));
         localStorage.setItem("treinoE", JSON.stringify(treinoE));
         localStorage.setItem("treinoF", JSON.stringify(treinoF));
+      }
+      function addVideo() {
+        videoUrl = exercicio;
+        switch (videoUrl) {
+          case "Supino-Reto-Barra":
+            videoUrl = `<iframe width="560" height="315" src="https://www.youtube.com/embed/72UUJVBuT7o?si=ut6VwWZeqxVJ_bqa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+
+            break;
+        }
       }
 
       function mostrarAddTreino() {

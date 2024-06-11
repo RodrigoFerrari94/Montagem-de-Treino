@@ -99,6 +99,10 @@ div {
   display: block;
   padding: 2px;
 }
+iframe {
+  max-width: 150px;
+  max-height: 120px;
+}
 button {
   background-color: red;
   color: #313131;
