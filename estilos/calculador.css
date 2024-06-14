@@ -42,6 +42,11 @@ h2 {
   font-size: 1.7em;
   text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
 }
+h3 {
+  margin-top: -10px;
+  background-color: rgba(0, 0, 0, 0.758);
+  margin-bottom: 20px;
+}
 
 main > h2 {
   margin-bottom: 0px;
@@ -50,16 +55,6 @@ main > h2 {
 main {
   text-align: center;
   margin: auto;
-}
-
-label {
-  display: block;
-  padding: 0px;
-  margin: 0px;
-  margin-top: 20px;
-  color: rgba(0, 0, 0, 0.786);
-  font-size: 1.2em;
-  text-shadow: 1px solid white;
 }
 
 input {
@@ -83,8 +78,9 @@ select {
 }
 
 div {
-  margin-top: 10px;
+  margin-top: 0px;
   color: white;
+  justify-content: start;
 }
 
 #container {
@@ -99,11 +95,35 @@ div {
   display: block;
   padding: 2px;
 }
+div.perc {
+  text-align: left;
+  display: block;
+  margin-bottom: 0px;
+}
+label.perc {
+  background-color: #00000079;
+  color: white;
+  font-size: 0.9em;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  margin-left: 10px;
+}
+input.perc {
+  display: inline;
+  width: 50px;
+  margin-left: 20px;
+  justify-content: left;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
 iframe {
   max-width: 150px;
   max-height: 120px;
+  margin-top: opx;
 }
 button {
+  display: block;
+  margin: auto;
   background-color: red;
   color: #313131;
   height: 50px;
@@ -134,6 +154,9 @@ div#resultado1RM {
   margin: auto;
   margin-top: 5px;
   display: none;
+}
+p.cargas {
+  font-size: 0.5;
 }
 
 div#resultado1RM > p {
@@ -240,4 +263,10 @@ footer {
   color: #fff;
   text-align: center;
   padding: 5px;
+}
+div.historic {
+  text-align: center;
+}
+fieldset {
+  color: white;
 }
