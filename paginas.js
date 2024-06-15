@@ -77,7 +77,7 @@ function gerarPDF() {
   var field = document.querySelector("fieldset");
 
   var select = document.querySelector("select");
-  var a = document.querySelectorAll("a");
+  var as = document.querySelectorAll("a");
 
   buttons.forEach(function (button) {
     button.style.display = "none";
@@ -89,11 +89,13 @@ function gerarPDF() {
   timers.forEach(function (timer) {
     timer.style.display = "none";
   });
+  as.forEach(function (a) {
+    a.style.display = "none";
+  });
   videos.forEach(function (video1) {
     video1.style.display = "none";
   });
   select.style.display = "none";
-  a.style.display = "none";
 
   field.style.display = "none";
 
@@ -113,6 +115,10 @@ function gerarPDF() {
     videos.forEach(function (video1) {
       video1.style.display = "";
     });
+    as.forEach(function (a) {
+      a.style.display = "";
+    });
+
     select.style.display = "";
     a.style.display = "";
 
