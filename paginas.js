@@ -83,7 +83,6 @@ function gerarPDF() {
       elem.classList.remove("oculto");
     });
   });
-  location.reload();
 }
 function iniciarContador(index) {
   var buttonTimer = document.getElementById(`buttonTimer-${index}`);
