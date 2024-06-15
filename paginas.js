@@ -74,7 +74,7 @@ function gerarPDF() {
     "button, input, div.timer-tempo, div.video-container, select, fieldset, a"
   );
 
-  hideElements.forEach(function (elem) {
+  ocultarElementos.forEach(function (elem) {
     elem.classList.add("oculto");
   });
 
