@@ -89,21 +89,17 @@ function iniciarContador(index) {
   buttonTimer.style.display = "none";
   var timerElement = document.getElementById(`timer-${index}`);
   var tempoTotal = parseInt(document.getElementById(`contador-${index}`).value);
+  var tempoRestante = tempoTotal;
 
-  // Inicializa o Web Worker
-  var worker = new Worker("timerWorker.js");
+  timerElement.innerHTML = formatarTempo(tempoRestante);
+  timerElement.classList.remove("contador-verde");
+  timerElement.classList.add("contador-vermelho");
 
-  // Envia o tempo total para o Web Worker
-  worker.postMessage({ type: "setTime", tempoTotal: tempoTotal });
+  intervalId = setInterval(function () {
+    tempoRestante--;
 
-  // Começa a contagem no Web Worker
-  worker.postMessage("start");
-
-  // Recebe atualizações do Web Worker
-  worker.onmessage = function (e) {
-    var tempoRestante = e.data;
     if (tempoRestante <= 0) {
-      worker.terminate();
+      clearInterval(intervalId);
       timerElement.classList.remove("contador-vermelho");
       timerElement.classList.add("contador-verde");
       buttonTimer.style.display = "inline";
@@ -111,7 +107,7 @@ function iniciarContador(index) {
     } else {
       timerElement.innerHTML = formatarTempo(tempoRestante);
     }
-  };
+  }, 1000);
 }
 function stopContador(index) {
   clearInterval(intervalId);
