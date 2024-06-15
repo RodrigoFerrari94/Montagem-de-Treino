@@ -4,11 +4,9 @@ var treinoC = JSON.parse(localStorage.getItem("treinoC")) || [];
 var treinoD = JSON.parse(localStorage.getItem("treinoD")) || [];
 var treinoE = JSON.parse(localStorage.getItem("treinoE")) || [];
 var treinoF = JSON.parse(localStorage.getItem("treinoF")) || [];
+var todosHistoricos = JSON.parse(localStorage.getItem("historicos")) || [];
 var sessao = document.getElementById("visualizarsecao").value;
 var divs;
-if (document.getElementById("visualizarsecao").value === "a") {
-  sessao = "Seção A";
-}
 var intervalId;
 var objetivo = localStorage.getItem("objetivo");
 var obj = document.getElementById("obj");
@@ -25,7 +23,7 @@ if (objetivo === null) {
 }
 
 obj.innerHTML = `${objetivo}`;
-ses.innerHTML = `${sessao}`;
+
 nomeUsuario.innerHTML = `${nome}`;
 
 function editar(index) {

@@ -48,7 +48,11 @@
               value="Salvar Edição"
               onclick="salvarEdicao()"
             />
-            <input type="button" value="Fechar Edição" onclick="cancelarObj()" />
+            <input
+              type="button"
+              value="Fechar Edição"
+              onclick="cancelarObj()"
+            />
           </div>
         </div>
       </div>
@@ -80,6 +84,14 @@
       </select>
     </div>
     <div><input type="button" value="Gerar Treino" onclick="gerarPDF()" /></div>
+    <fieldset>
+      <legend>Histórico de Exercícios</legend>
+      <div id="historico"></div>
+    </fieldset>
+    <input type="button" value="Gerar Histórico" onclick="gerarHistorico()" />
+    <div>
+      <input type="button" value="Ocultar Histórico" onclick="ocultar()" />
+    </div>
 
     <footer>
       <p>&copy; 2024 Rodrigo Ferrari Personal trainer</p>
@@ -88,6 +100,10 @@
     <script src="visualizar-treino.js"></script>
     <script src="paginas.js"></script>
     <script>
+      if (document.getElementById("visualizarsecao").value === "f") {
+        sessao = "Seção F";
+        ses.innerHTML = `${sessao}`;
+      }
       function listar() {
         treinoF.forEach((item, index) => {
           main.innerHTML += `<div class="exercicio-editar" >

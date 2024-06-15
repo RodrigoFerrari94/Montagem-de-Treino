@@ -85,7 +85,14 @@
       </select>
     </div>
     <div><input type="button" value="Gerar Treino" onclick="gerarPDF()" /></div>
-
+    <fieldset>
+      <legend>Histórico de Exercícios</legend>
+      <div id="historico"></div>
+    </fieldset>
+    <input type="button" value="Gerar Histórico" onclick="gerarHistorico()" />
+    <div>
+      <input type="button" value="Ocultar Histórico" onclick="ocultar()" />
+    </div>
     <footer>
       <p>&copy; 2024 Rodrigo Ferrari Personal trainer</p>
     </footer>
@@ -93,6 +100,10 @@
     <script src="visualizar-treino.js"></script>
     <script src="paginas.js"></script>
     <script>
+      if (document.getElementById("visualizarsecao").value === "d") {
+        sessao = "Seção D";
+        ses.innerHTML = `${sessao}`;
+      }
       function listar() {
         treinoD.forEach((item, index) => {
           main.innerHTML += `<div class="exercicio-editar" >
