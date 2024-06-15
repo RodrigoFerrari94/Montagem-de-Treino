@@ -69,60 +69,19 @@ function salvarEdicao() {
   location.reload();
 }
 function gerarPDF() {
-  var buttons = document.querySelectorAll("button");
-  var inputs = document.querySelectorAll("input");
-  var timers = document.querySelectorAll("div.timer-tempo");
-  var videos = document.querySelectorAll("div.video-container");
-
-  var field = document.querySelector("fieldset");
-
-  var select = document.querySelector("select");
-  var as = document.querySelectorAll("a");
-
-  buttons.forEach(function (button) {
-    button.style.display = "none";
-  });
-
-  inputs.forEach(function (input) {
-    input.style.display = "none";
-  });
-  timers.forEach(function (timer) {
-    timer.style.display = "none";
-  });
-  as.forEach(function (a) {
-    a.style.display = "none";
-  });
-  videos.forEach(function (video1) {
-    video1.style.display = "none";
-  });
-  select.style.display = "none";
-
-  field.style.display = "none";
-
   var element = document.querySelector("body");
+  var ocultarElementos = document.querySelectorAll(
+    "button, input, div.timer-tempo, div.video-container, select, fieldset, a"
+  );
+
+  hideElements.forEach(function (elem) {
+    elem.classList.add("oculto");
+  });
 
   html2pdf(element).then(function () {
-    buttons.forEach(function (button) {
-      button.style.display = "";
+    ocultarElementos.forEach(function (elem) {
+      elem.classList.remove("oculto");
     });
-
-    inputs.forEach(function (input) {
-      input.style.display = "";
-    });
-    timers.forEach(function (timer) {
-      timer.style.display = "";
-    });
-    videos.forEach(function (video1) {
-      video1.style.display = "";
-    });
-    as.forEach(function (a) {
-      a.style.display = "";
-    });
-
-    select.style.display = "";
-    a.style.display = "";
-
-    field.style.display = "";
   });
 }
 function iniciarContador(index) {

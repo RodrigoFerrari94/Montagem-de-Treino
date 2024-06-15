@@ -229,3 +229,6 @@ h3#historico {
   background-color: rgba(0, 0, 0, 0.758);
   margin-bottom: 20px;
 }
+.oculto {
+  display: none;
+}
