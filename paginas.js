@@ -71,7 +71,7 @@ function salvarEdicao() {
 function gerarPDF() {
   var element = document.querySelector("body");
   var ocultarElementos = document.querySelectorAll(
-    "button, input, div.timer-tempo, div.video-container, select, fieldset, a"
+    `button, input, div.timer-tempo, div.video-container, select, fieldset, a`
   );
 
   ocultarElementos.forEach(function (elem) {
