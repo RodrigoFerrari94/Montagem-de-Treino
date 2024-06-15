@@ -84,44 +84,56 @@ function gerarPDF() {
     });
   });
 }
-var worker = new Worker("timerWorker.js");
+function iniciarContador(index) {
+  var buttonTimer = document.getElementById(`buttonTimer-${index}`);
+  buttonTimer.style.display = "none";
+  var timerElement = document.getElementById(`timer-${index}`);
+  var tempoTotal = parseInt(document.getElementById(`contador-${index}`).value);
+  var tempoRestante = tempoTotal;
 
-worker.onmessage = function (e) {
-  var index = e.data.index;
-  var tempoRestante = e.data.tempoRestante;
+  timerElement.innerHTML = formatarTempo(tempoRestante);
+  timerElement.classList.remove("contador-verde");
+  timerElement.classList.add("contador-vermelho");
+
+  intervalId = setInterval(function () {
+    tempoRestante--;
+
+    if (tempoRestante <= 0) {
+      clearInterval(intervalId);
+      timerElement.classList.remove("contador-vermelho");
+      timerElement.classList.add("contador-verde");
+      buttonTimer.style.display = "inline";
+      timerElement.innerHTML = "Próxima Série";
+    } else {
+      timerElement.innerHTML = formatarTempo(tempoRestante);
+    }
+  }, 1000);
+}
+function stopContador(index) {
+  clearInterval(intervalId);
   var timerElement = document.getElementById(`timer-${index}`);
   var buttonTimer = document.getElementById(`buttonTimer-${index}`);
-
-  if (e.data.command === "update") {
-    timerElement.innerHTML = formatarTempo(tempoRestante);
-  } else if (e.data.command === "stop") {
-    clearInterval(intervalId);
-    timerElement.classList.remove("contador-vermelho");
-    timerElement.classList.add("contador-verde");
-    buttonTimer.style.display = "inline";
-    timerElement.innerHTML = e.data.message;
-  }
-};
-
-function iniciarContador(index) {
-  var tempoTotal = parseInt(document.getElementById(`contador-${index}`).value);
-  worker.postMessage({
-    command: "start",
-    index: index,
-    tempoTotal: tempoTotal,
-  });
+  timerElement.classList.remove("contador-vermelho");
+  timerElement.classList.add("contador-verde");
+  buttonTimer.style.display = "inline";
+  timerElement.innerHTML = "Próxima Série";
 }
-
-function pararContador(index) {
-  worker.postMessage({
-    command: "stop",
-    index: index,
-    message: "Próxima Série",
-  });
-}
-
 function finalizarExer(index) {
-  worker.postMessage({ command: "stop", index: index, message: "Finalizado" });
+  clearInterval(intervalId);
+  var timerElement = document.getElementById(`timer-${index}`);
+  var buttonTimer = document.getElementById(`buttonTimer-${index}`);
+  timerElement.classList.remove("contador-verde");
+  timerElement.classList.add("contador-vermelho");
+  buttonTimer.style.display = "inline";
+  timerElement.innerHTML = "Finalizado";
+}
+
+function formatarTempo(segundos) {
+  var minutos = Math.floor((segundos % 3600) / 60);
+  var segundosRestantes = segundos % 60;
+  return `${minutos.toString().padStart(2, "0")}:${segundosRestantes
+    .toString()
+    .padStart(2, "0")}`;
 }
 function verVideo(index) {
   var divVerVideo = document.getElementById(`verVideo-${index}`);
