@@ -73,7 +73,10 @@ function gerarPDF() {
   var inputs = document.querySelectorAll("input");
   var timers = document.querySelectorAll("div.timer-tempo");
   var videos = document.querySelectorAll("div.video-container");
+  var legend = document.querySelectorAll("legend");
+  var field = document.querySelectorAll("fieldset");
 
+  var ocultarHistorico = document.getElementById("historico");
   var select = document.querySelector("select");
   var a = document.querySelector("a");
 
@@ -92,6 +95,9 @@ function gerarPDF() {
   });
   select.style.display = "none";
   a.style.display = "none";
+  legend.style.display = "none";
+  ocultarHistorico.style.display = "none";
+  field.style.display = "none";
 
   var element = document.querySelector("body");
 
@@ -111,7 +117,11 @@ function gerarPDF() {
     });
     select.style.display = "";
     a.style.display = "";
+    legend.style.display = "";
+    ocultarHistorico.style.display = "";
+    field.style.display = "";
   });
+  location.reload();
 }
 function iniciarContador(index) {
   var buttonTimer = document.getElementById(`buttonTimer-${index}`);
