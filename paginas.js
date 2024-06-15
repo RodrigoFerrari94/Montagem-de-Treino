@@ -75,12 +75,12 @@ function gerarPDF() {
   );
 
   ocultarElementos.forEach(function (elem) {
-    elem.classList.add("oculto");
+    elem.classList.add("ocultos");
   });
 
   html2pdf(element).then(function () {
     ocultarElementos.forEach(function (elem) {
-      elem.classList.remove("oculto");
+      elem.classList.remove("ocultos");
     });
   });
 }
