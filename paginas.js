@@ -84,7 +84,13 @@ function gerarPDF() {
     });
   });
 }
+var intervalId;
+
 function iniciarContador(index) {
+  if (intervalId) {
+    clearInterval(intervalId);
+  }
+
   var buttonTimer = document.getElementById(`buttonTimer-${index}`);
   buttonTimer.style.display = "none";
   var timerElement = document.getElementById(`timer-${index}`);
@@ -109,6 +115,13 @@ function iniciarContador(index) {
     }
   }, 1000);
 }
+
+function pararContador() {
+  if (intervalId) {
+    clearInterval(intervalId);
+  }
+}
+
 function stopContador(index) {
   clearInterval(intervalId);
   var timerElement = document.getElementById(`timer-${index}`);
