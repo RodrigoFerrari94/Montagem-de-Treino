@@ -71,7 +71,7 @@ function salvarEdicao() {
 function gerarPDF() {
   var element = document.querySelector("body");
   var ocultarElementos = document.querySelectorAll(
-    "button, input, div.timer-tempo, div.video-container, div#contatos, select#visualizarsecao, fieldset, a"
+    "button, input, div.timer-tempo, div.video-container, div#contatos, select, fieldset, a"
   );
 
   ocultarElementos.forEach(function (elem) {
@@ -83,6 +83,7 @@ function gerarPDF() {
       elem.classList.remove("oculto");
     });
   });
+  listar();
 }
 function iniciarContador(index) {
   var buttonTimer = document.getElementById(`buttonTimer-${index}`);

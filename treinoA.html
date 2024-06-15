@@ -106,6 +106,7 @@
       var historico = document.getElementById("historico");
       function listar() {
         treinoA.forEach((item, index) => {
+          main.innerHTML = "";
           main.innerHTML += `<div class="exercicio-editar" >
                     <p>Exercíco:<input type="text" id="exercicio-${index}" value="${item.exercicio}" > 1RM ≈ <input type="text" id="formulaGeral-${index}" value= "${item.formulaGeral}"></p>
                     <p>Carga: <input type="text" id="carga-${index}" value="${item.cargaExercicio}"></p>
@@ -168,7 +169,7 @@
         treinoA[index].contador = contador;
 
         localStorage.setItem("treinoA", JSON.stringify(treinoA));
-        main.innerHTML = "";
+
         listar();
         alert("Alterações salvas com sucesso!");
 
@@ -179,7 +180,7 @@
       function apagar(index) {
         treinoA.splice(index, 1);
         localStorage.setItem("treinoA", JSON.stringify(treinoA));
-        main.innerHTML = "";
+
         listar();
         editarObjetivo();
       }
