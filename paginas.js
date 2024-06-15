@@ -124,7 +124,6 @@ function gerarPDF() {
 
     field.style.display = "";
   });
-  location.reload();
 }
 function iniciarContador(index) {
   var buttonTimer = document.getElementById(`buttonTimer-${index}`);
