@@ -48,7 +48,11 @@
               value="Salvar Edição"
               onclick="salvarEdicao()"
             />
-            <input type="button" value="Cancelar" onclick="cancelarObj()" />
+            <input
+              type="button"
+              value="Fechar Edição"
+              onclick="cancelarObj()"
+            />
           </div>
         </div>
       </div>
@@ -89,9 +93,7 @@
     <script src="visualizar-treino.js"></script>
     <script src="paginas.js"></script>
     <script>
-      if (treinoD) {
-        var editarInf = document.getElementById("editarInfo");
-
+      function listar() {
         treinoD.forEach((item, index) => {
           main.innerHTML += `<div class="exercicio-editar" >
                     <p>Exercíco:<input type="text" id="exercicio-${index}" value="${item.exercicio}" > 1RM ≈ <input type="text" id="formulaGeral-${index}" value= "${item.formulaGeral}"></p>
@@ -130,6 +132,11 @@
           });
         });
       }
+      if (treinoD) {
+        var editarInf = document.getElementById("editarInfo");
+
+        listar();
+      }
       function editarObjetivo() {
         document.getElementById("editarInfo").style.display = "block";
         document.getElementById("alterarObjetivo").value = obj.innerText;
@@ -164,14 +171,20 @@
 
         localStorage.setItem("treinoD", JSON.stringify(treinoD));
 
+        main.innerHTML = "";
+        listar();
         alert("Alterações salvas com sucesso!");
-        location.reload();
+
+        var mostrarEdit = document.querySelectorAll(".exercicio-editar");
+        mostrarEdit[index].style.display = "none";
+        editarObjetivo();
       }
       function apagar(index) {
         treinoD.splice(index, 1);
         localStorage.setItem("treinoD", JSON.stringify(treinoD));
         main.innerHTML = "";
-        location.reload();
+        listar();
+        editarObjetivo();
       }
 
       localStorage.setItem("treinoA", JSON.stringify(treinoA));

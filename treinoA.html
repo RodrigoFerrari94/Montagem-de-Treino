@@ -48,7 +48,11 @@
               value="Salvar Edição"
               onclick="salvarEdicao()"
             />
-            <input type="button" value="Cancelar" onclick="cancelarObj()" />
+            <input
+              type="button"
+              value="Fechar Edição"
+              onclick="cancelarObj()"
+            />
           </div>
         </div>
       </div>
@@ -90,9 +94,7 @@
     <script src="paginas.js"></script>
 
     <script>
-      if (treinoA) {
-        var editarInf = document.getElementById("editarInfo");
-
+      function listar() {
         treinoA.forEach((item, index) => {
           main.innerHTML += `<div class="exercicio-editar" >
                     <p>Exercíco:<input type="text" id="exercicio-${index}" value="${item.exercicio}" > 1RM ≈ <input type="text" id="formulaGeral-${index}" value= "${item.formulaGeral}"></p>
@@ -131,6 +133,10 @@
           });
         });
       }
+      if (treinoA) {
+        var editarInf = document.getElementById("editarInfo");
+        listar();
+      }
 
       function salvar(index) {
         var exercicio = document.getElementById(`exercicio-${index}`).value;
@@ -152,16 +158,20 @@
         treinoA[index].contador = contador;
 
         localStorage.setItem("treinoA", JSON.stringify(treinoA));
-
+        main.innerHTML = "";
+        listar();
         alert("Alterações salvas com sucesso!");
 
-        location.reload();
+        var mostrarEdit = document.querySelectorAll(".exercicio-editar");
+        mostrarEdit[index].style.display = "none";
+        editarObjetivo();
       }
       function apagar(index) {
         treinoA.splice(index, 1);
         localStorage.setItem("treinoA", JSON.stringify(treinoA));
         main.innerHTML = "";
-        location.reload();
+        listar();
+        editarObjetivo();
       }
 
       localStorage.setItem("treinoA", JSON.stringify(treinoA));

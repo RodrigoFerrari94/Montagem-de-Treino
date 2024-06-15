@@ -48,7 +48,7 @@
               value="Salvar Edição"
               onclick="salvarEdicao()"
             />
-            <input type="button" value="Cancelar" onclick="cancelarObj()" />
+            <input type="button" value="Fechar Edição" onclick="cancelarObj()" />
           </div>
         </div>
       </div>
@@ -88,7 +88,7 @@
     <script src="visualizar-treino.js"></script>
     <script src="paginas.js"></script>
     <script>
-      if (treinoF) {
+      function listar() {
         treinoF.forEach((item, index) => {
           main.innerHTML += `<div class="exercicio-editar" >
                     <p>Exercíco:<input type="text" id="exercicio-${index}" value="${item.exercicio}" > 1RM ≈ <input type="text" id="formulaGeral-${index}" value= "${item.formulaGeral}"></p>
@@ -98,13 +98,13 @@
                     <p>Descanso: <input type="text" id="descanso-${index}" value="${item.tempoDescanso}"></p>
                     <p>Contador: <input type="number" id="contador-${index}" value="${item.contador}"></p>
 
-                    <p>Incorporar Video: <input type="text" id="video-${index}" value=""> <input type="button" id="videoButton-${index}" value="Salvar Video" onclick="salvarVideo(${index})"></p>
                     <button onclick="salvar(${index})">Salvar</button>
                     <button onclick="cancelar(${index})">Cancelar</button>
                     </div>
                     
                     
-    <div class="exercicio-editado" >
+
+                    <div class="exercicio-editado" >
                     <p>${item.exercicio} 1RM ≈ ${item.formulaGeral}Kg</p>
                     <p>Carga:${item.cargaExercicio}</p>
                     <p>Repetições: ${item.repeticoes}</p>
@@ -119,13 +119,16 @@
                     </div>
 
                     `;
-          var divs = document.querySelectorAll("main div.exercicio-editado");
+          divs = document.querySelectorAll("main div.exercicio-editado");
           divs.forEach((div, i) => {
             if (index === i) {
               div.innerHTML += `<button class="oculto" style=" margin-left : 0px;" onclick="apagar(${index})">Apagar</button>`;
             }
           });
         });
+      }
+      if (treinoF) {
+        listar();
       }
 
       function salvar(index) {
@@ -149,15 +152,20 @@
 
         localStorage.setItem("treinoF", JSON.stringify(treinoF));
 
+        main.innerHTML = "";
+        listar();
         alert("Alterações salvas com sucesso!");
 
-        location.reload();
+        var mostrarEdit = document.querySelectorAll(".exercicio-editar");
+        mostrarEdit[index].style.display = "none";
+        editarObjetivo();
       }
       function apagar(index) {
         treinoF.splice(index, 1);
         localStorage.setItem("treinoF", JSON.stringify(treinoF));
         main.innerHTML = "";
-        location.reload();
+        listar();
+        editarObjetivo();
       }
 
       localStorage.setItem("treinoA", JSON.stringify(treinoA));

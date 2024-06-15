@@ -491,13 +491,43 @@
       function criarExercicio() {
         switch (document.getElementById("objetivo").value) {
           case "percentual":
-            cargaMinima = percmin;
-            cargaMax = percmax;
-            tempoDescanso = "0:45 min a 1:30min";
-            contador = 60;
-            repeticoes = "10 a 15";
-            serie = "2 a 3";
-            cargaExercicio = `Entre ${cargaMinima}kg e ${cargaMax}kg `;
+            if (percmin <= 40 && percmax <= 50) {
+              tempoDescanso = "0:45 min a 1:00min";
+              contador = 50;
+              repeticoes = "10";
+              serie = "3";
+              cargaExercicio = `Entre ${cargaMinima}kg e ${cargaMax}kg `;
+            } else if (percmin >= 45 && percmax <= 55) {
+              tempoDescanso = "0:45 min a 1:30min";
+              contador = 60;
+              repeticoes = "10 a 15";
+              serie = "2 a 3";
+              cargaExercicio = `Entre ${cargaMinima}kg e ${cargaMax}kg `;
+            } else if (percmin >= 56 && percmax <= 70) {
+              tempoDescanso = "1:00min a 2:00min";
+              contador = 90;
+              repeticoes = "15 a 30";
+              serie = "3";
+              cargaExercicio = `Entre ${cargaMinima}kg e ${cargaMax} kg`;
+            } else if (percmin >= 70 && percmax <= 85) {
+              tempoDescanso = "1:30min a 3:00min";
+              contador = 120;
+              repeticoes = "8 a 12";
+              serie = "3 a 4";
+              cargaExercicio = `Entre ${cargaMinima}kg e ${cargaMax} kg`;
+            } else if (percmin >= 85 && percmax <= 100) {
+              tempoDescanso = "3:00 min a 5:00 min";
+              contador = 240;
+              repeticoes = "3 a 6";
+              serie = "4 a 6";
+              cargaExercicio = `Entre ${cargaMinima}kg e ${cargaMax} kg`;
+            } else {
+              tempoDescanso = "??? Edite esse item";
+              contador = 60;
+              repeticoes = "??? Edite esse item";
+              serie = "??? Edite esse item";
+              cargaExercicio = `Entre ${cargaMinima}kg e ${cargaMax} kg`;
+            }
 
             break;
           case "adaptacao":
