@@ -286,21 +286,19 @@
       </div>
     </main>
 
-    <div class="visualizarseção">
-      <input
-        type="button"
-        value="Visualizar Seção"
-        onclick="visualizarTreino()"
-      />
-      <select name="visualizarTreino" id="visualizarsecao">
-        <option value="a">Treino A</option>
-        <option value="b">Treino B</option>
-        <option value="c">Treino C</option>
-        <option value="d">Treino D</option>
-        <option value="e">Treino E</option>
-        <option value="f">Treino F</option>
-      </select>
-    </div>
+    <select
+      name="visualizarTreino"
+      id="visualizarsecao"
+      onchange="visualizarTreino()"
+    >
+      <option value="">Vizualizar Sessão</option>
+      <option value="a">Visualizar Sessão A</option>
+      <option value="b">Visualizar Sessão B</option>
+      <option value="c">Visualizar Sessão C</option>
+      <option value="d">Visualizar Sessão D</option>
+      <option value="e">Visualizar Sessão E</option>
+      <option value="f">Visualizar Sessão F</option>
+    </select>
 
     <a
       style="text-decoration: none; text-align: center; color: white"
@@ -311,7 +309,7 @@
       <p>Dúvidas</p></a
     >
 
-    <a href="index.html" class="btn">Voltar para a Página Inicial</a>
+    <a href="index.html" class="btn">&lt;=Voltar para a Página Inicial</a>
     <fieldset>
       <legend>Histórico de Exercícios</legend>
       <div id="historico"></div>
@@ -459,7 +457,7 @@
 
           resultado.innerHTML += `<p>${exercicio}</p>`;
           resultado.innerHTML += `<p>1RM ≈ <strong>${formulaGeral} KG</strong>.</p>`;
-          resultado.innerHTML += `<p style="font-size:0.9em;">Carga entre ${cargaMinima}KG e ${cargaMax}KG.</p>`;
+          resultado.innerHTML += `<p style="font-size:0.9em;">Para ${percmin}% e ${percmax}% de 1RM carga entre ${cargaMinima}KG e ${cargaMax}KG.</p>`;
           resultado.style.display = "block";
           document.getElementById("mostrar").style.display = "block";
           pushInHistorico();

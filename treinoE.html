@@ -59,21 +59,18 @@
     </header>
     <main></main>
     <a href="calculador.html">Voltar</a>
-    <div class="visualizarseção">
-      <input
-        type="button"
-        value="Visualizar Seção"
-        onclick="visualizarTreino()"
-      />
-      <select name="visualizarTreino" id="visualizarsecao">
-        <option value="a">Treino A</option>
-        <option value="b">Treino B</option>
-        <option value="c">Treino C</option>
-        <option value="d">Treino D</option>
-        <option value="e" selected>Treino E</option>
-        <option value="f">Treino F</option>
-      </select>
-    </div>
+    <select
+      name="visualizarTreino"
+      id="visualizarsecao"
+      onchange="visualizarTreino()"
+    >
+      <option value="a">Visualizar Sessão A</option>
+      <option value="b">Visualizar Sessão B</option>
+      <option value="c">Visualizar Sessão C</option>
+      <option value="d">Visualizar Sessão D</option>
+      <option value="e" selected>Visualizar Sessão E</option>
+      <option value="f">Visualizar Sessão F</option>
+    </select>
 
     <a
       id="whatsapp"

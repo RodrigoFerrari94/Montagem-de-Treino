@@ -184,17 +184,11 @@ div.exercicio-editar {
 }
 
 select#visualizarsecao {
-  display: inline;
-  color: white;
-  background-color: rgb(63, 63, 63);
-  width: 100px;
-}
-
-div.visualizarseção > input {
-  display: inline;
+  display: block;
   color: white;
   background-color: rgb(63, 63, 63);
   width: 150px;
+  margin-top: 10px;
 }
 
 footer {

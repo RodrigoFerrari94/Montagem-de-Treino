@@ -60,8 +60,13 @@ select {
   text-align-last: center;
 }
 
-select option {
-  text-align: left;
+select#visualizarsecao {
+  display: block;
+  color: white;
+  background-color: rgb(63, 63, 63);
+  width: 150px;
+  margin: auto;
+  margin-top: 20px;
 }
 
 div {
