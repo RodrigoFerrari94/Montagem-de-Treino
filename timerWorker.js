@@ -1,10 +1,8 @@
 let segundosRestantes;
 
 onmessage = function (e) {
-  if (e.data === "start") {
-    segundosRestantes = e.segundos;
-    countdown();
-  }
+  segundosRestantes = e.data.segundos;
+  countdown();
 };
 
 function countdown() {
