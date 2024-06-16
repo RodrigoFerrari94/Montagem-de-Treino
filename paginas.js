@@ -84,28 +84,31 @@ function gerarPDF() {
     });
   });
 }
-var intervalId;
+var worker;
 
 function iniciarContador(index) {
-  if (intervalId) {
-    clearInterval(intervalId);
+  if (worker) {
+    worker.terminate();
   }
+
+  worker = new Worker("timerWorker.js");
 
   var buttonTimer = document.getElementById(`buttonTimer-${index}`);
   buttonTimer.style.display = "none";
+
   var timerElement = document.getElementById(`timer-${index}`);
   var tempoTotal = parseInt(document.getElementById(`contador-${index}`).value);
-  var tempoRestante = tempoTotal;
 
-  timerElement.innerHTML = formatarTempo(tempoRestante);
+  timerElement.innerHTML = formatarTempo(tempoTotal);
   timerElement.classList.remove("contador-verde");
   timerElement.classList.add("contador-vermelho");
 
-  intervalId = setInterval(function () {
-    tempoRestante--;
+  worker.onmessage = function (e) {
+    var tempoRestante = e.data;
 
     if (tempoRestante <= 0) {
-      clearInterval(intervalId);
+      worker.terminate();
+      worker = null;
       timerElement.classList.remove("contador-vermelho");
       timerElement.classList.add("contador-verde");
       buttonTimer.style.display = "inline";
@@ -113,31 +116,43 @@ function iniciarContador(index) {
     } else {
       timerElement.innerHTML = formatarTempo(tempoRestante);
     }
-  }, 1000);
+  };
+
+  worker.postMessage({ segundos: tempoTotal });
 }
 
 function pararContador() {
-  if (intervalId) {
-    clearInterval(intervalId);
+  if (worker) {
+    worker.terminate();
+    worker = null;
   }
 }
 
 function stopContador(index) {
-  clearInterval(intervalId);
+  pararContador();
+
   var timerElement = document.getElementById(`timer-${index}`);
   var buttonTimer = document.getElementById(`buttonTimer-${index}`);
+
   timerElement.classList.remove("contador-vermelho");
   timerElement.classList.add("contador-verde");
+
   buttonTimer.style.display = "inline";
+
   timerElement.innerHTML = "Próxima Série";
 }
+
 function finalizarExer(index) {
-  clearInterval(intervalId);
+  pararContador();
+
   var timerElement = document.getElementById(`timer-${index}`);
   var buttonTimer = document.getElementById(`buttonTimer-${index}`);
+
   timerElement.classList.remove("contador-verde");
   timerElement.classList.add("contador-vermelho");
+
   buttonTimer.style.display = "inline";
+
   timerElement.innerHTML = "Finalizado";
 }
 
