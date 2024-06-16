@@ -94,91 +94,9 @@
       <p>&copy; 2024 Rodrigo Ferrari Personal trainer</p>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
-    <script src="timerWorker.js"></script>
     <script src="visualizar-treino.js"></script>
     <script src="paginas.js"></script>
     <script>
-      var worker;
-
-      function iniciarContador(index) {
-        if (worker) {
-          worker.terminate();
-        }
-
-        worker = new Worker("timerWorker.js");
-
-        var buttonTimer = document.getElementById(`buttonTimer-${index}`);
-        buttonTimer.style.display = "none";
-
-        var timerElement = document.getElementById(`timer-${index}`);
-        var tempoTotal = parseInt(
-          document.getElementById(`contador-${index}`).value
-        );
-
-        timerElement.innerHTML = formatarTempo(tempoTotal);
-        timerElement.classList.remove("contador-verde");
-        timerElement.classList.add("contador-vermelho");
-
-        worker.onmessage = function (e) {
-          var tempoRestante = e.data;
-
-          if (tempoRestante <= 0) {
-            worker.terminate();
-            worker = null;
-            timerElement.classList.remove("contador-vermelho");
-            timerElement.classList.add("contador-verde");
-            buttonTimer.style.display = "inline";
-            timerElement.innerHTML = "Próxima Série";
-          } else {
-            timerElement.innerHTML = formatarTempo(tempoRestante);
-          }
-        };
-
-        worker.postMessage({ segundos: tempoTotal });
-      }
-
-      function pararContador() {
-        if (worker) {
-          worker.terminate();
-          worker = null;
-        }
-      }
-
-      function stopContador(index) {
-        pararContador();
-
-        var timerElement = document.getElementById(`timer-${index}`);
-        var buttonTimer = document.getElementById(`buttonTimer-${index}`);
-
-        timerElement.classList.remove("contador-vermelho");
-        timerElement.classList.add("contador-verde");
-
-        buttonTimer.style.display = "inline";
-
-        timerElement.innerHTML = "Próxima Série";
-      }
-
-      function finalizarExer(index) {
-        pararContador();
-
-        var timerElement = document.getElementById(`timer-${index}`);
-        var buttonTimer = document.getElementById(`buttonTimer-${index}`);
-
-        timerElement.classList.remove("contador-verde");
-        timerElement.classList.add("contador-vermelho");
-
-        buttonTimer.style.display = "inline";
-
-        timerElement.innerHTML = "Finalizado";
-      }
-
-      function formatarTempo(segundos) {
-        var minutos = Math.floor((segundos % 3600) / 60);
-        var segundosRestantes = segundos % 60;
-        return `${minutos.toString().padStart(2, "0")}:${segundosRestantes
-          .toString()
-          .padStart(2, "0")}`;
-      }
       if (document.getElementById("visualizarsecao").value === "f") {
         sessao = "Seção F";
         ses.innerHTML = `${sessao}`;
