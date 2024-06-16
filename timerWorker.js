@@ -1,4 +1,4 @@
-let segundosRestantes;
+var segundosRestantes;
 
 onmessage = function (e) {
   segundosRestantes = e.data.segundos;
