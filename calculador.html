@@ -471,9 +471,11 @@
           case "percentual":
             if (percmin <= 40 && percmax <= 50) {
               cargaMinima = Math.round(
-                formula * percmin - barra - percentualPeso
+                (formula * percmin) / 100 - barra - percentualPeso
               );
-              cargaMax = Math.round(formula * percmax - barra - percentualPeso);
+              cargaMax = Math.round(
+                (formula * percmax) / 100 - barra - percentualPeso
+              );
               tempoDescanso = "0:45 min a 1:00min";
               contador = 50;
               repeticoes = "10";
@@ -481,9 +483,11 @@
               cargaExercicio = `Entre ${cargaMinima}kg e ${cargaMax}kg `;
             } else if (percmin >= 45 && percmax <= 55) {
               cargaMinima = Math.round(
-                formula * percmin - barra - percentualPeso
+                (formula * percmin) / 100 - barra - percentualPeso
               );
-              cargaMax = Math.round(formula * percmax - barra - percentualPeso);
+              cargaMax = Math.round(
+                (formula * percmax) / 100 - barra - percentualPeso
+              );
               tempoDescanso = "0:45 min a 1:30min";
               contador = 60;
               repeticoes = "10 a 15";
@@ -491,9 +495,11 @@
               cargaExercicio = `Entre ${cargaMinima}kg e ${cargaMax}kg `;
             } else if (percmin >= 56 && percmax <= 70) {
               cargaMinima = Math.round(
-                formula * percmin - barra - percentualPeso
+                (formula * percmin) / 100 - barra - percentualPeso
               );
-              cargaMax = Math.round(formula * percmax - barra - percentualPeso);
+              cargaMax = Math.round(
+                (formula * percmax) / 100 - barra - percentualPeso
+              );
               tempoDescanso = "1:00min a 2:00min";
               contador = 90;
               repeticoes = "15 a 30";
@@ -501,9 +507,11 @@
               cargaExercicio = `Entre ${cargaMinima}kg e ${cargaMax} kg`;
             } else if (percmin >= 70 && percmax <= 85) {
               cargaMinima = Math.round(
-                formula * percmin - barra - percentualPeso
+                (formula * percmin) / 100 - barra - percentualPeso
               );
-              cargaMax = Math.round(formula * percmax - barra - percentualPeso);
+              cargaMax = Math.round(
+                (formula * percmax) / 100 - barra - percentualPeso
+              );
               tempoDescanso = "1:30min a 3:00min";
               contador = 120;
               repeticoes = "8 a 12";
@@ -511,9 +519,11 @@
               cargaExercicio = `Entre ${cargaMinima}kg e ${cargaMax} kg`;
             } else if (percmin >= 85 && percmax <= 100) {
               cargaMinima = Math.round(
-                formula * percmin - barra - percentualPeso
+                (formula * percmin) / 100 - barra - percentualPeso
               );
-              cargaMax = Math.round(formula * percmax - barra - percentualPeso);
+              cargaMax = Math.round(
+                (formula * percmax) / 100 - barra - percentualPeso
+              );
               tempoDescanso = "3:00 min a 5:00 min";
               contador = 240;
               repeticoes = "3 a 6";
@@ -521,9 +531,11 @@
               cargaExercicio = `Entre ${cargaMinima}kg e ${cargaMax} kg`;
             } else {
               cargaMinima = Math.round(
-                formula * percmin - barra - percentualPeso
+                (formula * percmin) / 100 - barra - percentualPeso
               );
-              cargaMax = Math.round(formula * percmax - barra - percentualPeso);
+              cargaMax = Math.round(
+                (formula * percmax) / 100 - barra - percentualPeso
+              );
               tempoDescanso = "??? Edite esse item";
               contador = 60;
               repeticoes = "??? Edite esse item";
