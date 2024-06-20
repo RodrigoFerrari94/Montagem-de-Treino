@@ -76,6 +76,9 @@ select {
   color: #313131;
   text-align-last: center;
 }
+select#percentualPeso {
+  margin-left: 0px;
+}
 
 div {
   margin-top: 0px;
@@ -204,6 +207,8 @@ div#infAdicionais {
 }
 div#infAdicionais > input {
   display: block;
+  margin: auto;
+  margin-top: 2px;
 }
 
 select#visualizarsecao {
