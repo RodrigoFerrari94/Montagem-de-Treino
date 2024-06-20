@@ -96,7 +96,7 @@ div {
   padding: 2px;
 }
 div.perc {
-  text-align: left;
+  text-align: center;
   display: block;
   margin-bottom: 0px;
 }
@@ -110,9 +110,9 @@ label.perc {
 }
 input.perc {
   display: inline;
-  width: 50px;
-  margin-left: 20px;
-  justify-content: left;
+  width: 35px;
+
+  text-align: center;
   margin-top: 0px;
   margin-bottom: 0px;
 }
@@ -197,6 +197,13 @@ div#resultado1RM > p {
   margin-bottom: 10px;
   padding: 5px;
   display: none;
+}
+
+div#infAdicionais {
+  display: none;
+}
+div#infAdicionais > input {
+  display: block;
 }
 
 select#visualizarsecao {

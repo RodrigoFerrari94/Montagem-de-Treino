@@ -186,12 +186,7 @@
             <option value="HiperExtensão Lombar"></option>
             <option value="HiperExtensão Ombro"></option>
           </datalist>
-          <input
-            type="number"
-            id="repetiçaomax"
-            name="rm"
-            placeholder="Repetições realizadas"
-          />
+
           <input
             type="number"
             id="cargakg"
@@ -200,49 +195,61 @@
           />
           <input
             type="number"
-            name="barra"
-            id="barrakg"
-            placeholder="Digite cargas Extras (KG)"
+            id="repetiçaomax"
+            name="rm"
+            placeholder="Repetições Máx. Realizadas"
           />
-          <select name="percentual" id="percentualPeso">
-            <option value="0">0%(Exercício não utiliza peso do corpo.)</option>
-            <option value="90">
-              90%(ex:Barra Fixa, Paralela, Panturrilha)
-            </option>
-            <option value="70">70%(ex:Agachamentos)</option>
-            <option value="40">40%(ex:Apoio, elevacão pélvica)</option>
-            <option value="20">20%(ex:Abdominais)</option>
-          </select>
-          <button type="button" onclick="calcular()">Calcular 1 RM</button>
-        </div>
-        <div>
-          <div id="iframe"></div>
-
-          <label class="perc" for="cargamin">% Mínimo </label>
-          <label class="perc" for="cargamax">% Máximo</label>
+          <label class="perc" for="cargamin">Utilizar carga de treino:
+        
 
           <div class="perc">
-            <input
-              class="perc"
-              type="number"
-              min="10"
-              max="100"
-              value="70"
-              name="cargamin"
-              id="percminimo"
-            />
-            <input
-              class="perc"
-              placeholder="Digite um Percentual Máximo de 1RM"
-              type="number"
-              min="10"
-              max="100"
-              value="85"
-              name="cargamax"
-              id="percmaximo"
-            />
+            <p>
+              Entre<input
+                class="perc"
+                type="number"
+                min="10"
+                max="100"
+                value="70"
+                name="cargamin"
+                id="percminimo"
+              /> % e <input
+                class="perc"
+                type="number"
+                min="10"
+                max="100"
+                value="85"
+                name="cargamax"
+                id="percmaximo"
+              /> % de 1RM.
+            </p>
           </div>
+          <input type="button" id="cargasExtras" value="Informações Adicionais" onclick="infCargaExtras()">
+          <div id="infAdicionais">
+            <input
+              type="number"
+              name="barra"
+              id="barrakg"
+              placeholder="Barras ou Equipamentos (KG)"
+            />
+            <select name="percentual" id="percentualPeso">
+              <option value="0">
+                0%(Exercício não utiliza peso do corpo.)
+              </option>
+              <option value="90">
+                90%(ex:Barra Fixa, Paralela, Panturrilha)
+              </option>
+              <option value="70">70%(ex:Agachamentos)</option>
+              <option value="40">40%(ex:Apoio, elevacão pélvica)</option>
+              <option value="20">20%(ex:Abdominais)</option>
+            </select>
+          </div>
+          <button type="button" onclick="calcular()">Calcular 1 RM</button>
         </div>
+        
+          <div id="iframe"></div>
+
+          
+        
       </div>
 
       <div id="resultado1RM"></div>
@@ -648,6 +655,15 @@
         localStorage.setItem("treinoD", JSON.stringify(treinoD));
         localStorage.setItem("treinoE", JSON.stringify(treinoE));
         localStorage.setItem("treinoF", JSON.stringify(treinoF));
+      }
+      function infCargaExtras(){
+        var infAdicionais = document.getElementById("infAdicionais");
+        var cargaExtrasBotao = document.getElementById("cargasExtras")
+
+        infAdicionais.style.display = "block";
+        cargaExtrasBotao.style.display ="none";
+
+
       }
       function addVideo() {
         videoUrl = exercicio;
