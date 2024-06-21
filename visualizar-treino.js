@@ -1,5 +1,5 @@
 function visualizarTreino() {
-  switch (document.getElementsByClassName("visualizarsecao").value) {
+  switch (document.getElementById("visualizarsecao").value) {
     case "a":
       window.location.href = "treinoA.html";
 
@@ -24,7 +24,7 @@ function visualizarTreino() {
   }
 }
 function visualizarTreinoOculto() {
-  switch (document.getElementsByClassName("visualizarsecaoOculto").value) {
+  switch (document.getElementById("visualizarsecaoOculto").value) {
     case "A":
       window.location.href = "treinoA.html";
 
