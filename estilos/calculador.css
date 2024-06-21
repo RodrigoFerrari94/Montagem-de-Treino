@@ -211,7 +211,7 @@ div#infAdicionais > input {
   margin-top: 2px;
 }
 
-select.visualizarsecao {
+select#visualizarsecao {
   display: block;
   color: white;
   background-color: rgb(63, 63, 63);
