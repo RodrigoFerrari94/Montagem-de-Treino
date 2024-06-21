@@ -289,10 +289,11 @@
           value="Adicionar Exercício"
           onclick="criarExercicio()"
         />
+        <br><br><br>
         <select
       name="visualizarTreino"
-      class="visualizarsecao"
-      onchange="visualizarTreino()"
+      id="visualizarsecaoOculto"
+      onchange="visualizarTreinoOculto()"
     >
       <option value="">Vizualizar Sessão</option>
       <option value="A">Visualizar Sessão A</option>
@@ -307,7 +308,7 @@
 
     <select
       name="visualizarTreino"
-      class="visualizarsecao"
+      id="visualizarsecao"
       onchange="visualizarTreino()"
     >
       <option value="">Vizualizar Sessão</option>

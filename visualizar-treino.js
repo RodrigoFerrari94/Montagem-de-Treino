@@ -1,24 +1,49 @@
 function visualizarTreino() {
   switch (document.getElementsByClassName("visualizarsecao").value) {
-    case "a" || "A":
+    case "a":
       window.location.href = "treinoA.html";
 
       break;
-    case "b" || "B":
+    case "b":
       window.location.href = "treinoB.html";
       break;
-    case "c" || "C":
+    case "c":
       window.location.href = "treinoC.html";
       break;
-    case "d" || "D":
+    case "d":
       window.location.href = "treinoD.html";
       break;
 
-    case "e" || "E":
+    case "e":
       window.location.href = "treinoE.html";
       break;
 
-    case "f" || "F":
+    case "f":
+      window.location.href = "treinoF.html";
+      break;
+  }
+}
+function visualizarTreinoOculto() {
+  switch (document.getElementsByClassName("visualizarsecaoOculto").value) {
+    case "A":
+      window.location.href = "treinoA.html";
+
+      break;
+    case "B":
+      window.location.href = "treinoB.html";
+      break;
+    case "C":
+      window.location.href = "treinoC.html";
+      break;
+    case "D":
+      window.location.href = "treinoD.html";
+      break;
+
+    case "E":
+      window.location.href = "treinoE.html";
+      break;
+
+    case "F":
       window.location.href = "treinoF.html";
       break;
   }
