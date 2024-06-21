@@ -1,8 +1,5 @@
 function visualizarTreino() {
-  switch (
-    document.getElementById("visualizarsecao").value ||
-    document.getElementById("visualizarsecao2").value
-  ) {
+  switch (document.getElementById("visualizarsecao").value) {
     case "a":
       window.location.href = "treinoA.html";
 
