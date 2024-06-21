@@ -289,12 +289,25 @@
           value="Adicionar Exercício"
           onclick="criarExercicio()"
         />
+        <select
+      name="visualizarTreino"
+      class="visualizarsecao"
+      onchange="visualizarTreino()"
+    >
+      <option value="">Vizualizar Sessão</option>
+      <option value="A">Visualizar Sessão A</option>
+      <option value="B">Visualizar Sessão B</option>
+      <option value="C">Visualizar Sessão C</option>
+      <option value="D">Visualizar Sessão D</option>
+      <option value="E">Visualizar Sessão E</option>
+      <option value="F">Visualizar Sessão F</option>
+    </select>
       </div>
     </main>
 
     <select
       name="visualizarTreino"
-      id="visualizarsecao"
+      class="visualizarsecao"
       onchange="visualizarTreino()"
     >
       <option value="">Vizualizar Sessão</option>

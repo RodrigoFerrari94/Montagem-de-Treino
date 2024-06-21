@@ -1,24 +1,24 @@
 function visualizarTreino() {
-  switch (document.getElementById("visualizarsecao").value) {
-    case "a":
+  switch (document.getElementsByClassName("visualizarsecao").value) {
+    case "a" || "A":
       window.location.href = "treinoA.html";
 
       break;
-    case "b":
+    case "b" || "B":
       window.location.href = "treinoB.html";
       break;
-    case "c":
+    case "c" || "C":
       window.location.href = "treinoC.html";
       break;
-    case "d":
+    case "d" || "D":
       window.location.href = "treinoD.html";
       break;
 
-    case "e":
+    case "e" || "E":
       window.location.href = "treinoE.html";
       break;
 
-    case "f":
+    case "f" || "F":
       window.location.href = "treinoF.html";
       break;
   }
