@@ -246,7 +246,8 @@
           <button type="button" onclick="calcular()">Calcular 1 RM</button>
         </div>
         
-          <div id="iframe"></div>
+          <div id="iframe"> <input type="button" value="Tutorial"></div>
+          
 
           
         
@@ -459,12 +460,24 @@
         ) {
           window.alert("[ERRO] Preencha os dados corretamente!!!");
         } else {
-          if (rm === 1) {
-            formula = carga;
-          } else if (nivel === "iniciante") {
-            formula = Math.round(0.033 * rm * carga + carga);
-          } else if (nivel === "experiente") {
-            formula = Math.round(carga * (1 + 0.025 * rm));
+          switch(nivel){
+            case "epley":
+            formula = Math.round((0.0333 * carga) * rm + carga
+            );
+            break;
+
+            case "brzycki":
+            formula = Math.round(100 * carga / (102,78 - 2,78 * rm));
+            break;
+
+            case "baechle":
+            formula = Math.round(carga * ((0.0375 * rm) + 0.978));
+            break;
+
+            case "o'connor":
+            formula = Math.round(carga * (1+(0.025 * rm))
+            );
+            break;
           }
           formulaGeral = Math.round(formula - barra - percentualPeso);
           cargaMinima = Math.round(
@@ -660,6 +673,7 @@
             alert("Adicionado a seção F");
 
             break;
+            
         }
 
         localStorage.setItem("treinoA", JSON.stringify(treinoA));
@@ -682,9 +696,11 @@
         videoUrl = exercicio;
         switch (videoUrl) {
           case "Supino Reto Barra":
-            videoUrl = `<iframe width="560" height="315" src="https://www.youtube.com/embed/72UUJVBuT7o?si=ut6VwWZeqxVJ_bqa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+            videoUrl = `<iframe width="560" height="315" src="https://www.youtube.com/embed/72UUJVBuT7o?si=ut6VwWZeqxVJ_bqa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><input type="button" value="Tutorial">`;
 
             break;
+            default:
+            videoUrl = `<input type="button" value="Tutorial">`;
         }
       }
 
