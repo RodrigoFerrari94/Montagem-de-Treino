@@ -462,21 +462,23 @@
         } else {
           switch(nivel){
             case "epley":
-            formula = Math.round((0.0333 * carga) * rm + carga
-            );
+            formula = (0.0333 * carga) * rm + carga;
+            formula = Math.round(formula);
             break;
 
             case "brzycki":
-            formula = Math.round(carga / (1.0278 - (0.0278 * rm)));
+            formula = carga / (1.0278 - (0.0278 * rm));
+            formula = Math.round(formula);
             break;
 
             case "baechle":
-            formula = Math.round(carga * ((0.0375 * rm) + 0.978));
+            formula = carga * ((0.0375 * rm) + 0.978);
+            formula = Math.round(formula);
             break;
 
             case "o'connor":
-            formula = Math.round(carga * (1+(0.025 * rm))
-            );
+            formula = carga * (1+(0.025 * rm));
+            formula = Math.round(formula);
             break;
           }
           formulaGeral = Math.round(formula - barra - percentualPeso);
