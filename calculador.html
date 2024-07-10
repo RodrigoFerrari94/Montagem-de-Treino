@@ -246,10 +246,9 @@
           <button type="button" onclick="calcular()">Calcular 1 RM</button>
         </div>
         
-          <div id="iframe"> <input type="button" value="Tutorial"></div>
+          <div id="iframe"> <input id="tutorial" type="button" value="Tutorial" onclick="tutorial()"></div>
           
 
-          
         
       </div>
 
@@ -363,6 +362,23 @@
 
       var peso = localStorage.getItem("peso");
       var nivel = localStorage.getItem("nivel");
+      var novoExercicio;
+
+      var rm,
+        barra,
+        percentualPeso,
+        resultado,
+        formula,
+        formulaGeral,
+        carga,
+        percmin,
+        percmax,
+        cargaMinima,
+        cargaMax,
+        videoUrl,
+        contador;
+
+      var regex = /^\d+$/;
 
       function newExercicio(
         exercicio,
@@ -386,23 +402,7 @@
         };
       }
 
-      var novoExercicio;
-
-      var rm,
-        barra,
-        percentualPeso,
-        resultado,
-        formula,
-        formulaGeral,
-        carga,
-        percmin,
-        percmax,
-        cargaMinima,
-        cargaMax,
-        videoUrl,
-        contador;
-
-      var regex = /^\d+$/;
+      
 
       function calcular() {
         exercicio = document.getElementById("exercicio").value;
@@ -692,16 +692,26 @@
 
 
       }
+     
       function addVideo() {
         videoUrl = exercicio;
         switch (videoUrl) {
           case "Supino Reto Barra":
-            videoUrl = `<iframe width="560" height="315" src="https://www.youtube.com/embed/72UUJVBuT7o?si=ut6VwWZeqxVJ_bqa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><input type="button" value="Tutorial">`;
+            videoUrl = `<iframe width="560" height="315" src="https://www.youtube.com/embed/72UUJVBuT7o?si=ut6VwWZeqxVJ_bqa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><input id="tutorial" type="button" value="Tutorial" onclick="tutorial()">`;
 
             break;
             default:
-            videoUrl = `<input type="button" value="Tutorial">`;
+            videoUrl = `<iframe width="560" height="315" src="https://www.youtube.com/embed/tjmS1ipsGXo?si=LPwFs0e4LWY9Z7m_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><input id="tutorial" type="button" value="Tutorial" onclick="tutorial()">`
         }
+      }
+      function tutorial(){
+        exercicio = ""
+        addVideo();
+        divIframe = document.getElementById("iframe");
+
+        divIframe.innerHTML = videoUrl;
+        
+        
       }
 
       function mostrarAddTreino() {

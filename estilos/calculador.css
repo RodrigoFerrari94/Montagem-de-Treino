@@ -124,17 +124,24 @@ iframe {
   max-height: 120px;
   margin-top: opx;
 }
+input#tutorial {
+  background-color: red;
+  color: #ffffff;
+  height: 30px;
+  width: 90px;
+  margin: auto;
+  display: block;
+}
 button {
   display: block;
   margin: auto;
   background-color: red;
-  color: #313131;
+  color: white;
   height: 50px;
   width: 150px;
   margin-top: 20px;
   text-align: center;
   border-radius: 10px;
-  color: white;
 }
 
 ::placeholder {
